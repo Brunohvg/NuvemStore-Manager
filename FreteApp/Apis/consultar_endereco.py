@@ -10,11 +10,11 @@ def validar_cep(cep):
         # Verifica se o cep digitado tem 8 digitos
         if len(cep) != 8 or not cep.isdigit():
             # Retorna o cep como invalido caso não atendas aos requesitos
-            raise Exception(f"Cep digitado é inválido: {cep}")
+            raise Exception({"Erro": f"Cep digitado é inválido:{cep}"})
 
         return cep
     except Exception as e:
-        return str(e)
+        return None
 
 
 def consultar_endereco(cep):
