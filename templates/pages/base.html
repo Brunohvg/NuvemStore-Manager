@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
 
-<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="/assets/"
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="../assets/"
   data-template="vertical-menu-template-free">
 
 <head>
@@ -9,7 +9,7 @@
   <meta name="viewport"
     content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-  <title>Dashboard - Analytics | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+  <title>Fluid - Layouts | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
 
   <meta name="description" content="" />
 
@@ -35,16 +35,14 @@
   <!-- Vendors CSS -->
   <link rel="stylesheet" href="{% static 'assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css' %}" />
 
-  <link rel="stylesheet" href="{% static 'assets/vendor/libs/apex-charts/apex-charts.css' %}" />
-
   <!-- Page CSS -->
 
   <!-- Helpers -->
   <script src="{% static 'assets/vendor/js/helpers.js' %}"></script>
 
-  <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-  <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-  <script src="{% static  'assets/js/config.js"></script>
+  <!-- ! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+  <!-- ? Config: Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file. -->
+  <script src="{% static 'assets/js/config.js' %}"></script>
 </head>
 
 <body>
@@ -103,16 +101,15 @@
             <span class="app-brand-text demo menu-text fw-bolder ms-2">Sneat</span>
           </a>
 
-          <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
-            <i class="bx bx-chevron-left bx-sm align-middle"></i>
-          </a>
+          <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none"><i
+              class="bx bx-chevron-left bx-sm align-middle"></i></a>
         </div>
 
         <div class="menu-inner-shadow"></div>
 
         <ul class="menu-inner py-1">
           <!-- Dashboard -->
-          <li class="menu-item active">
+          <li class="menu-item">
             <a href="index.html" class="menu-link">
               <i class="menu-icon tf-icons bx bx-home-circle"></i>
               <div data-i18n="Analytics">Dashboard</div>
@@ -120,7 +117,7 @@
           </li>
 
           <!-- Layouts -->
-          <li class="menu-item">
+          <li class="menu-item active open">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
               <i class="menu-icon tf-icons bx bx-layout"></i>
               <div data-i18n="Layouts">Layouts</div>
@@ -142,7 +139,7 @@
                   <div data-i18n="Container">Container</div>
                 </a>
               </li>
-              <li class="menu-item">
+              <li class="menu-item active">
                 <a href="layouts-fluid.html" class="menu-link">
                   <div data-i18n="Fluid">Fluid</div>
                 </a>
@@ -223,7 +220,9 @@
             </ul>
           </li>
           <!-- Components -->
-          <li class="menu-header small text-uppercase"><span class="menu-header-text">Components</span></li>
+          <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Components</span>
+          </li>
           <!-- Cards -->
           <li class="menu-item">
             <a href="cards-basic.html" class="menu-link">
@@ -364,7 +363,9 @@
           </li>
 
           <!-- Forms & Tables -->
-          <li class="menu-header small text-uppercase"><span class="menu-header-text">Forms &amp; Tables</span></li>
+          <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Forms &amp; Tables</span>
+          </li>
           <!-- Forms -->
           <li class="menu-item">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -410,7 +411,9 @@
             </a>
           </li>
           <!-- Misc -->
-          <li class="menu-header small text-uppercase"><span class="menu-header-text">Misc</span></li>
+          <li class="menu-header small text-uppercase">
+            <span class="menu-header-text">Misc</span>
+          </li>
           <li class="menu-item">
             <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues" target="_blank"
               class="menu-link">
@@ -434,12 +437,10 @@
         <!-- Navbar -->
 
         <nav
-          class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+          class="layout-navbar container-fluid navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
           id="layout-navbar">
           <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
-            <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
-              <i class="bx bx-menu bx-sm"></i>
-            </a>
+            <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)"><i class="bx bx-menu bx-sm"></i></a>
           </div>
 
           <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
@@ -474,7 +475,8 @@
                       <div class="d-flex">
                         <div class="flex-shrink-0 me-3">
                           <div class="avatar avatar-online">
-                            <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                            <img src="{% static 'assets/img/avatars/1.png' %}" alt
+                              class="w-px-40 h-auto rounded-circle" />
                           </div>
                         </div>
                         <div class="flex-grow-1">
@@ -519,7 +521,7 @@
                   </li>
                 </ul>
               </li>
-              <!--/ User -->
+              <!-- / User -->
             </ul>
           </div>
         </nav>
@@ -527,94 +529,85 @@
         <!-- / Navbar -->
 
         <!-- Content wrapper -->
-
         <div class="content-wrapper">
           <!-- Content -->
           <div class="container-fluid flex-grow-1 container-p-y">
-            <!-- Layout Demo -->
+            <!-- Layout Conteudo Bruno -->
             <div class="card">
               {% block content %}
-              <div class="col-xl">
-                <div class="card mb-4">
-                  <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Basic Layout</h5>
-                    <small class="text-muted float-end">Default label</small>
-                  </div>
-                  <div class="card-body">
-                    <form>
-                      <div class="mb-3">
-                        <label class="form-label" for="basic-default-fullname">Full Name</label>
-                        <input type="text" class="form-control" id="basic-default-fullname" placeholder="John Doe">
-                      </div>
-                      <div class="mb-3">
-                        <label class="form-label" for="basic-default-company">Company</label>
-                        <input type="text" class="form-control" id="basic-default-company" placeholder="ACME Inc.">
-                      </div>
-                      <div class="mb-3">
-                        <label class="form-label" for="basic-default-email">Email</label>
-                        <div class="input-group input-group-merge">
-                          <input type="text" id="basic-default-email" class="form-control" placeholder="john.doe"
-                            aria-label="john.doe" aria-describedby="basic-default-email2">
-                          <span class="input-group-text" id="basic-default-email2">@example.com</span>
-                        </div>
-                        <div class="form-text">You can use letters, numbers &amp; periods</div>
-                      </div>
-                      <div class="mb-3">
-                        <label class="form-label" for="basic-default-phone">Phone No</label>
-                        <input type="text" id="basic-default-phone" class="form-control phone-mask"
-                          placeholder="658 799 8941">
-                      </div>
-                      <div class="mb-3">
-                        <label class="form-label" for="basic-default-message">Message</label>
-                        <textarea id="basic-default-message" class="form-control"
-                          placeholder="Hi, Do you have a moment to talk Joe?"></textarea>
-                      </div>
-                      <button type="submit" class="btn btn-primary">Send</button>
-                    </form>
-                  </div>
-                </div>
+                
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">@</span>
+                <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
               </div>
-
+              
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <span class="input-group-text" id="basic-addon2">@example.com</span>
+              </div>
+              
+              <label for="basic-url" class="form-label">Your vanity URL</label>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon3">https://example.com/users/</span>
+                <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+              </div>
+              
+              <div class="input-group mb-3">
+                <span class="input-group-text">$</span>
+                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <span class="input-group-text">.00</span>
+              </div>
+              
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Username" aria-label="Username">
+                <span class="input-group-text">@</span>
+                <input type="text" class="form-control" placeholder="Server" aria-label="Server">
+              </div>
+              
+              <div class="input-group">
+                <span class="input-group-text">With textarea</span>
+                <textarea class="form-control" aria-label="With textarea"></textarea>
+              </div>
+              
               {% endblock content %}
             </div>
-            </ <!--/ Layout Demo -->
           </div>
-          <!-- / Content -->
-
-          <!-- Footer -->
-          <footer class="content-footer footer bg-footer-theme">
-            <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
-              <div class="mb-2 mb-md-0">
-                ©
-                <script>
-                  document.write(new Date().getFullYear());
-                </script>
-                , made with ❤️ by
-                <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
-              </div>
-              <div>
-                <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
-                <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
-
-                <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
-                  target="_blank" class="footer-link me-4">Documentation</a>
-
-                <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues" target="_blank"
-                  class="footer-link me-4">Support</a>
-              </div>
-            </div>
-          </footer>
-          <!-- / Footer -->
-
-          <div class="content-backdrop fade"></div>
+          <!-- / Layout Conteudo Bruno -->
         </div>
-        <!-- Content wrapper -->
-      </div>
-      <!-- / Layout page -->
-    </div>
+        <!-- / Content -->
 
-    <!-- Overlay -->
-    <div class="layout-overlay layout-menu-toggle"></div>
+        <!-- Footer -->
+        <footer class="content-footer footer bg-footer-theme">
+          <div class="container-fluid d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+            <div class="mb-2 mb-md-0">
+              ©
+              <script>
+                document.write(new Date().getFullYear())
+              </script>, made with ❤️ by
+              <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
+            </div>
+            <div>
+              <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">License</a>
+              <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More Themes</a>
+
+              <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
+                target="_blank" class="footer-link me-4">Documentation</a>
+
+              <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues" target="_blank"
+                class="footer-link me-4">Support</a>
+            </div>
+          </div>
+        </footer>
+        <!-- / Footer -->
+
+        <div class="content-backdrop fade"></div>
+      </div>
+      <!-- Content wrapper -->
+    </div>
+    <!-- / Layout page -->
+  </div>
+
+
   </div>
   <!-- / Layout wrapper -->
 
@@ -631,16 +624,14 @@
   <!-- endbuild -->
 
   <!-- Vendors JS -->
-  <script src="{% static 'assets/vendor/libs/apex-charts/apexcharts.js' %}"></script>
 
   <!-- Main JS -->
   <script src="{% static 'assets/js/main.js' %}"></script>
 
   <!-- Page JS -->
-  <script src="{% static 'assets/js/dashboards-analytics.js' %}"></script>
 
   <!-- Place this tag in your head or just before your close body tag. -->
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <script async defer src="https://buttons.github.io/buttons.js' %}"></script>
 </body>
 
 </html>
