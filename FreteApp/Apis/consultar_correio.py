@@ -1,6 +1,6 @@
 import requests
 from decouple import config
-from consultar_endereco import validar_cep, consultar_endereco
+from consultar_endereco import validar_cep
 
 
 def consultar_valor_correio(cep, peso):

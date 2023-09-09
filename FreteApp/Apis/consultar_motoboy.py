@@ -41,4 +41,4 @@ def consultar_valor_motoboy(cep):
             return {"erro": "Ocorreu um erro na consulta à API externa."}
 
 
-print(consultar_valor_motoboy("34s600190"))
+print(consultar_valor_motoboy("34600190"))
