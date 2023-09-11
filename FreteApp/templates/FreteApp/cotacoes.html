@@ -1,60 +1,12 @@
 {% extends 'base.html' %}
-{{% block content %}
-
-
-<div>
-    <form class="row g-3" action="" method="post">
-        {% csrf_token %}
-        <div class="col-md-12">
-            <label for="cep" class="form-label">CEP</label>
-            <input type="text" maxlength="9" class="form-control" id="cep" name="cep" placeholder="Digite seu CEP"
-                aria-label="CEP" aria-describedby="button-addon2" required>
-        </div>
-        <div class="col-md-3">
-            <label for="altura" class="form-label">Altura</label>
-            <input type="number" class="form-control" id="altura" name="altura" placeholder="Altura" value="2">
-        </div>
-        <div class="col-md-3">
-            <label for="largura" class="form-label">Largura</label>
-            <input type="number" class="form-control" id="largura" name="largura" placeholder="Largura" value="12">
-        </div>
-        <div class="col-md-3">
-            <label for="comprimento" class="form-label">Comprimento</label>
-            <input type="number" class="form-control" id="comprimento" name="comprimento" placeholder="Comprimento"
-                value="17">
-        </div>
-        <div class="col-md-3">
-            <label for="peso" class="form-label">Peso</label>
-            <input type="number" class="form-control" id="peso" name="peso" placeholder="Peso" min="0" max="30"
-                value="1" required>
-        </div>
-        <div class="app-card-stat">
-            <button class="btn app-btn-primary" type="submit" id="button-addon2">CONSULTAR</button>
-        </div>
-    </form>
-    <br>
-
-    {% if localidade %}
-    <div class="card-header">
-
-        <div class="text-center custom-texto-valor">
-            <h6>
-                <p class="custom-texto-valor">Endereço para entrega</p>
-                <p class="custom-texto-valor">{{logradouro}}, {{bairro}} - {{localidade}} - {{uf}} - {{cep}}</p>
-            </h6>
-        </div>
+{% block content %}
+  <div class=".col-sm-6 .col-lg-8" style="width: 18rem;">
+    <div class="card-body .col-sm-6 .col-lg-8">
+      <h5 class="card-title">Card title</h5>
+      <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="card-link">Card link</a>
+      <a href="#" class="card-link">Another link</a>
     </div>
-
-    {% else %}
-    <div class="card-header">
-        <div class="text-center custom-texto-valor">
-            <h6>
-                <p class="custom-texto-valor">{{ endereco }}</p>
-
-            </h6>
-        </div>
-    </div>
-    {% endif %}
-</div>
-
-{% endblock content %}}
+  </div>
+{% endblock %}}
