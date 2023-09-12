@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br">
+
+<head>
+    <!-- Meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Login</title>
+    <style>
+        html,
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #E5E5E5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .formtext {
+            font-size: 12px;
+
+        }
+
+        .login-container {
+            width: 416px;
+            height: 445px;
+            margin: 80px auto;
+            /* Centraliza verticalmente e adiciona margem superior */
+            padding: 50px;
+            border-radius: 10px;
+            text-align: center;
+            background-color: #fff;
+            display: block;
+            justify-content: center;
+            align-items: center;
+
+
+        }
+
+        /* Adiciona espaço entre o botão e o link "Esqueci a senha" */
+        .sm {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="login-container">
+            <div class="e">
+                <svg class="pagarme-icon" width="151" height="40" viewBox="0 0 120 32">
+                    <p>teste</p>
+                </svg>
+
+            </div>
+
+            <form class="formtext" action="processar_login.php" method="post">
+                <div class="form-floating mb-3 formtext">
+                    {{ form.as_p }}
+                </div>
+                <div class="form-floating ">
+                    <input type="password" class="form-control" style="width: 316px" id="floatingPassword"
+                        placeholder="Password">
+                    <label for="floatingPassword">Password</label>
+                </div>
+                <div class="row justify-content-center align-items-center mt-4">
+                    <div class="col">
+                        <button type="submit" class="btn btn-success btn-block">Entrar</button>
+                    </div>
+
+                    <div class="col">
+                        <a href="#">Esqueci a senha</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS (opcional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

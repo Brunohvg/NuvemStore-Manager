@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
+from .forms import CommentForm
 
 
 def signup(request):
@@ -22,7 +23,9 @@ def signup(request):
         # Redirecionar para outra página após o registro bem-sucedido
         return redirect("nome_da_view")
 
-    return render(request, "UsersApp/signup.html")
+    comment_form = CommentForm()
+
+    return render(request, "UsersApp/signup.html", context={"form": comment_form})
 
 
 def login_user(request):
@@ -46,5 +49,3 @@ def edit_user(request):
 
 def delit_user(request):
     ...
-
-class LoginUser()
