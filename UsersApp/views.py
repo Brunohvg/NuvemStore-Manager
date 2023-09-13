@@ -28,6 +28,11 @@ def signup(request):
     return render(request, "UsersApp/signup.html", context={"form": comment_form})
 
 
+from django.contrib.auth import authenticate, login
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
+
+
 def login_user(request):
     if request.method == "GET":
         return render(request, template_name="UsersApp/login_user.html")
@@ -35,12 +40,15 @@ def login_user(request):
         user = request.POST.get("username")
         password = request.POST.get("password")
 
-        user_auth = authenticate(request, user=user, password=password)
+        user_auth = authenticate(request, username=user, password=password)
 
         if user_auth:
-            login(request, user_auth=user_auth)
+            login(request, user_auth)
+            print(user_auth)
 
-            return redirect(render("FreteApp/cotacoes.html"))
+            return redirect("FreteApp:base")
+        else:
+            return HttpResponse("Erro na autenticação")
 
 
 def edit_user(request):

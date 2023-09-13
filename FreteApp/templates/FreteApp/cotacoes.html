@@ -1,7 +1,13 @@
 {% extends 'base.html' %}
 
-{% block content %}
 
+
+{% block content %}
+{% if user %}
+{{ user }}
+{% else %}
+
+{% endif %}
 {% include 'FreteApp/includes/form-consultar-preco.html' %}
 
 {% endblock %}

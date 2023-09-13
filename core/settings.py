@@ -130,3 +130,12 @@ MEDIA_URL = "/media/"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# settings.py
+SESSION_COOKIE_AGE = (
+    1209600  # Defina o tempo de expiração da sessão em segundos (2 semanas, por padrão)
+)
+
+LOGIN_REDIRECT_URL = (
+    "UsersApp:login_user"  # Substitua 'FreteApp:base' pela sua URL desejada
+)
