@@ -1,77 +1,83 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-
-<head>
+  <head>
     <title>Portal - Bootstrap 5 Admin Dashboard Template For Developers</title>
 
     <!-- Meta -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <meta name="description" content="Portal - Bootstrap 5 Admin Dashboard Template For Developers">
-    <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
-    <link rel="shortcut icon" href="favicon.ico">
+    <meta name="description" content="Portal - Bootstrap 5 Admin Dashboard Template For Developers" />
+    <meta name="author" content="Xiaoying Riley at 3rd Wave Media" />
+    <link rel="shortcut icon" href="favicon.ico" />
 
-    <!-- FontAwesome JS-->
+    <!-- FontAwesome JS -->
     <script defer src="{% static 'assets/plugins/fontawesome/js/all.min.js' %}"></script>
 
     <!-- App CSS -->
-    <link id="theme-style" rel="stylesheet" href="{% static 'assets/css/portal.css' %}">
+    <link id="theme-style" rel="stylesheet" href="{% static 'assets/css/portal.css' %}" />
 
     <style>
-        .container-login {
-            width: 416px;
-            height: 445px;
-
-
-        }
+      .container-login {
+        width: 416px;
+        height: 445px;
+      }
+      
+      .teste {
+        max-width: 150px;
+        max-height: 150px;
+        margin-bottom: 60px;
+      }
     </style>
+  </head>
 
-</head>
-
-<body class="app app-login p-0 ">
+  <body class="app app-login p-0">
     <form class="auth-form login-form" action="" method="post">
-        {% csrf_token %}
-        <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
-            <div class="container container-login">
-                <div class="d-flex justify-content-center h3">
-                    <p>Portal</p>
+      {% csrf_token %}
+      <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+        <div class="container container-login">
+          <div class="d-flex justify-content-center h3">
+            <img class="teste" src="{% static 'assets\images\Logo-cloud-sotre.png' %}" alt="#" />
+          </div>
+          <div>
+            {% if messages %}
+              {% for message in messages %}
+                <div class="alert alert-warning" id="user_invalid" role="alert">{{ message }}</div>
+              {% endfor %}
+            {% endif %}
+          </div>
+          <div class="email mb-3">
+            <label class="sr-only" for="signin-email">Email</label>
+            <input id="signin-email" name="username" type="email" class="form-control signin-email" placeholder="Endereço de email" required="required" />
+          </div>
+          <div class="password mb-3">
+            <label class="sr-only" for="signin-password">Password</label>
+            <input id="signin-password" name="password" type="password" class="form-control signin-password" placeholder="Senha" required="required" />
+            <div class="extra mt-3 row justify-content-between">
+              <div class="col-6">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="RememberPassword" />
+                  <label class="form-check-label" for="RememberPassword">Lembrar acesso</label>
                 </div>
-                <div class="email mb-3">
-                    <label class="sr-only" for="signin-email">Email</label>
-                    <input id="signin-email" name="username" type="email" class="form-control signin-email"
-                        placeholder="Endereço de email" required="required">
+              </div>
+              <!-- //col-6 -->
+              <div class="col-6">
+                <div class="forgot-password text-end">
+                  <a href="reset-password.html">Esqueceu sua senha?</a>
                 </div>
-                <div class="password mb-3">
-                    <label class="sr-only" for="signin-password">Password</label>
-                    <input id="signin-password" name="password" type="password" class="form-control signin-password"
-                        placeholder="Senha" required="required">
-                    <div class="extra mt-3 row justify-content-between">
-                        <div class="col-6">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="RememberPassword">
-                                <label class="form-check-label" for="RememberPassword">
-                                    Lembrar acesso
-                                </label>
-                            </div>
-                        </div><!--//col-6-->
-                        <div class="col-6">
-                            <div class="forgot-password text-end">
-                                <a href="reset-password.html">Esqueceu sua senha?</a>
-                            </div>
-                        </div><!--//col-6-->
-                    </div><!--//extra-->
-                </div><!--//form-group-->
-                <div class="text-center">
-                    <button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto">Entrar</button>
-                </div>
-
-
-
+              </div>
+              <!-- //col-6 -->
             </div>
+            <!-- //extra -->
+          </div>
+          <!-- //form-group -->
+          <div class="text-center">
+            <button type="submit" class="btn app-btn-primary w-100 theme-btn mx-auto">Entrar</button>
+          </div>
+        </div>
+      </div>
     </form>
-</body>
-
+  </body>
 </html>
