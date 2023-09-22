@@ -1,18 +1,18 @@
 /*************************** Theme Colours****************************/
 // Define theme colour scheme
-$theme-color-primary: #15a362;
+$theme-color-primary: #2A68D3;
 
 $theme-text-color-primary: #252930;
 $theme-text-color-secondary: lighten($theme-text-color-primary, 25%);
 $theme-text-color-light: lighten($theme-text-color-primary, 40%);
 $theme-bg-light: #f5f6fe;
 $theme-border-color: lighten($theme-text-color-primary, 75%);
-$theme-color-new: #5ab66e;
+$theme-color-new: #2F74EB;
 $theme-color-count: #EC776C;
 $theme-error: #EC575B;
 $smoky-white: #f5f5f5;
 
-$theme-success-color: #5cb377;
+$theme-success-color: #33B892;
 $theme-warning-color: #EEBF41;
 $theme-info-color: #5b99ea;
 $theme-danger-color: #d26d69;
@@ -30,8 +30,8 @@ $theme-color-zip: #252930;
 
 
 $theme-colors: (
-  "primary":  $theme-color-primary, 
-  "secondary": $theme-text-color-secondary, 
+  "primary": $theme-color-primary,
+  "secondary": $theme-text-color-secondary,
   "success": $theme-success-color,
   "danger": $theme-danger-color,
   "warning": $theme-warning-color,
@@ -45,4 +45,3 @@ $theme-colors: (
 
 /*************************** Theme Styles Section ****************************/
 @import "app/styles.scss";
-

@@ -28,7 +28,7 @@
     --bs-gray-700: #495057;
     --bs-gray-800: #343a40;
     --bs-gray-900: #212529;
-    --bs-primary: #15a362;
+    --bs-primary: #2A68D3;
     --bs-secondary: #5d6778;
     --bs-success: #5cb377;
     --bs-danger: #d26d69;
@@ -3516,8 +3516,8 @@ fieldset:disabled .btn {
 
 .btn-primary {
     --bs-btn-color: #000;
-    --bs-btn-bg: #15a362;
-    --bs-btn-border-color: #15a362;
+    --bs-btn-bg: #2A68D3;
+    --bs-btn-border-color: #2A68D3;
     --bs-btn-hover-color: #000;
     --bs-btn-hover-bg: #38b17a;
     --bs-btn-hover-border-color: #2cac72;
@@ -3527,8 +3527,8 @@ fieldset:disabled .btn {
     --bs-btn-active-border-color: #2cac72;
     --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
     --bs-btn-disabled-color: #000;
-    --bs-btn-disabled-bg: #15a362;
-    --bs-btn-disabled-border-color: #15a362
+    --bs-btn-disabled-bg: #2A68D3;
+    --bs-btn-disabled-border-color: #2A68D3
 }
 
 .btn-secondary {
@@ -3617,19 +3617,19 @@ fieldset:disabled .btn {
 }
 
 .btn-outline-primary {
-    --bs-btn-color: #15a362;
-    --bs-btn-border-color: #15a362;
+    --bs-btn-color: #2A68D3;
+    --bs-btn-border-color: #2A68D3;
     --bs-btn-hover-color: #000;
-    --bs-btn-hover-bg: #15a362;
-    --bs-btn-hover-border-color: #15a362;
+    --bs-btn-hover-bg: #2A68D3;
+    --bs-btn-hover-border-color: #2A68D3;
     --bs-btn-focus-shadow-rgb: 21, 163, 98;
     --bs-btn-active-color: #000;
-    --bs-btn-active-bg: #15a362;
-    --bs-btn-active-border-color: #15a362;
+    --bs-btn-active-bg: #2A68D3;
+    --bs-btn-active-border-color: #2A68D3;
     --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    --bs-btn-disabled-color: #15a362;
+    --bs-btn-disabled-color: #2A68D3;
     --bs-btn-disabled-bg: transparent;
-    --bs-btn-disabled-border-color: #15a362;
+    --bs-btn-disabled-border-color: #2A68D3;
     --bs-gradient: none
 }
 
@@ -13865,7 +13865,7 @@ h6,
 }
 
 a {
-    color: #15a362;
+    color: #2A68D3;
     text-decoration: none
 }
 
@@ -13947,7 +13947,7 @@ a.app-link {
 }
 
 a.app-link:hover {
-    color: #15a362;
+    color: #2A68D3;
     text-decoration-color: rgba(21, 163, 98, .8)
 }
 
@@ -13980,16 +13980,16 @@ button.close:focus {
 }
 
 .app-btn-primary {
-    background: #15a362;
+    background: #2A68D3;
     color: #fff;
-    border-color: #15a362
+    border-color: #2A68D3
 }
 
 .app-btn-primary:hover,
 .app-btn-primary:active {
     color: #fff;
-    background: #18ba70;
-    border-color: #18ba70
+    background: #2F74EB;
+    border-color: #2F74EB
 }
 
 .app-btn-secondary {
@@ -13999,19 +13999,19 @@ button.close:focus {
 }
 
 .app-btn-secondary:hover {
-    color: #15a362;
-    border: 1px solid #15a362;
+    color: #2A68D3;
+    border: 1px solid #2A68D3;
     background: #fff
 }
 
 .btn-light {
     background: #f5f6fe;
-    color: #15a362
+    color: #2A68D3
 }
 
 .btn-light:hover {
     background: #f5f6fe;
-    color: #15a362
+    color: #2A68D3
 }
 
 .form-control {
@@ -14029,8 +14029,8 @@ button.close:focus {
 }
 
 .form-check-input:checked {
-    background-color: #15a362;
-    border-color: #15a362
+    background-color: #2A68D3;
+    border-color: #2A68D3
 }
 
 .dropdown-menu {
@@ -14108,7 +14108,7 @@ button.close:focus {
 .app-search-form .search-btn:focus,
 .app-search-form .search-btn:hover {
     outline: none !important;
-    color: #15a362;
+    color: #2F74EB;
     box-shadow: none
 }
 
@@ -14164,7 +14164,7 @@ button.close:focus {
 }
 
 .app-utility-item .icon-badge.icon-badge {
-    background: #ec776c;
+    background: #FA8532;
     border: 2px solid #fff
 }
 
@@ -14227,8 +14227,8 @@ button.close:focus {
 
 .app-notifications-dropdown .app-icon-holder {
     display: inline-block;
-    background: #edfdf6;
-    color: #15a362;
+    background: #d4e4ff;
+    color: #2A68D3;
     width: 36px;
     height: 36px;
     padding-top: 4px;
@@ -14277,7 +14277,7 @@ button.close:focus {
     }
 
     .search-mobile-trigger:hover {
-        color: #15a362;
+        color: #2A68D3;
         -webkit-opacity: 1;
         -moz-opacity: 1;
         opacity: 1
@@ -14421,9 +14421,9 @@ button.close:focus {
 }
 
 .app-nav .nav-link.active {
-    color: #15a362;
-    background: #edfdf6;
-    border-left: 3px solid #15a362;
+    color: #2A68D3;
+    background: #ebecfa;
+    border-left: 3px solid #2A68D3;
     font-weight: 500
 }
 
@@ -14433,7 +14433,7 @@ button.close:focus {
 }
 
 .app-nav .nav-link:hover {
-    color: #15a362
+    color: #2A68D3
 }
 
 .app-nav .nav-icon {
@@ -14511,11 +14511,11 @@ button.close:focus {
 }
 
 .app-nav .submenu-link.active {
-    color: #15a362
+    color: #2A68D3
 }
 
 .app-nav .submenu-link.active:before {
-    background-color: #15a362
+    background-color: #2A68D3
 }
 
 .app-sidepanel-footer {
@@ -14607,7 +14607,7 @@ button.close:focus {
 }
 
 .app-card.border-left-decoration {
-    border-left: 3px solid #15a362
+    border-left: 3px solid #2A68D3
 }
 
 .app-card .app-card-link-mask {
@@ -14728,8 +14728,8 @@ button.close:focus {
 
 .app-card .app-icon-holder {
     display: inline-block;
-    background: #edfdf6;
-    color: #15a362;
+    background: #ebecfa;
+    color: #2A68D3;
     width: 50px;
     height: 50px;
     padding-top: 10px;
@@ -14830,7 +14830,7 @@ button.close:focus {
 }
 
 .app-card-doc .app-card-thumb-holder .icon-holder .pdf-file {
-    color: #da2d27
+    color: #D35249
 }
 
 .app-card-doc .app-card-thumb-holder .icon-holder .text-file {
@@ -14838,7 +14838,7 @@ button.close:focus {
 }
 
 .app-card-doc .app-card-thumb-holder .icon-holder .excel-file {
-    color: #0da95f
+    color: #2F74EB
 }
 
 .app-card-doc .app-card-thumb-holder .icon-holder .ppt-file {
@@ -14928,8 +14928,8 @@ button.close:focus {
 }
 
 .app-nav-tabs .nav-link.active {
-    color: #15a362;
-    border-bottom: 2px solid #15a362
+    color: #2A68D3;
+    border-bottom: 2px solid #2A68D3
 }
 
 .app-nav-tabs .nav-link.active:hover {
@@ -14937,9 +14937,10 @@ button.close:focus {
 }
 
 .app-nav-tabs .nav-link:hover {
-    background: #edfdf6;
-    color: #15a362
+    background: #ebecfa;
+    color: #2A68D3
 }
+
 
 .app-pagination .pagination {
     font-size: .875rem
@@ -14987,7 +14988,7 @@ button.close:focus {
     padding-left: 0;
     font-size: 1rem;
     text-decoration: none;
-    color: #15a362
+    color: #2A68D3
 }
 
 .app-card-accordion .faq-accordion .accordion-button:after {
