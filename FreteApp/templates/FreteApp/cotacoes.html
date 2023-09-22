@@ -3,11 +3,7 @@
 
 
 {% block content %}
-{% if user %}
-{{ user }}
-{% else %}
 
-{% endif %}
 {% include 'FreteApp/includes/form-consultar-preco.html' %}
-
+{% include 'FreteApp/includes/resultado-cotacao.html' %}
 {% endblock %}
