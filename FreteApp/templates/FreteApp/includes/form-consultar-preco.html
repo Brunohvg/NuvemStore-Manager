@@ -5,9 +5,14 @@
     <div class="col-md-12">
       <label for="cep" class="form-label">CEP</label>
       <input type="text" maxlength="9" class="form-control" id="cep" name="cep" placeholder="Digite seu CEP" required />
-      {% for message in messagens %}
-        {{ mmessage }}
-      {% endfor %}
+      {% if messages %}
+      <ul class="messages">
+          {% for message in messages %}
+              <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+      </ul>
+  {% endif %}
+  
     </div>
     <div class="col-md-3">
       <label for="altura" class="form-label">Altura</label>
