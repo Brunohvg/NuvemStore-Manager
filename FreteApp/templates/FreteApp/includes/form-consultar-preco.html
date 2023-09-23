@@ -5,6 +5,9 @@
     <div class="col-md-12">
       <label for="cep" class="form-label">CEP</label>
       <input type="text" maxlength="9" class="form-control" id="cep" name="cep" placeholder="Digite seu CEP" required />
+      {% for message in messagens %}
+        {{ mmessage }}
+      {% endfor %}
     </div>
     <div class="col-md-3">
       <label for="altura" class="form-label">Altura</label>
@@ -13,7 +16,7 @@
     <div class="col-md-3">
       <label for="largura" class="form-label">Largura</label>
       <input type="number" class="form-control" id="largura" name="largura" placeholder="Largura" value="12" />
-      {{ error_message }}
+      {{ erro }}
     </div>
     <div class="col-md-3">
       <label for="comprimento" class="form-label">Comprimento</label>

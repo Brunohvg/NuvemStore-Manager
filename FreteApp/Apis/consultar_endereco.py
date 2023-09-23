@@ -37,4 +37,4 @@ def consultar_endereco(cep):
             )
 
     except Exception as e:
-        return e
+        return None

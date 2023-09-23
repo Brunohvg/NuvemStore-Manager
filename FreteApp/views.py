@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from .Apis.consultar_endereco import consultar_endereco
-import json
+from django.contrib import messages
 
 
 from django.http import HttpResponse
@@ -35,38 +35,13 @@ def _handle_post(request):
         data = handle_request
         return _handle_end(request, data)
 
+from django.contrib import messages
 
 def _handle_end(request, data):
-    if request.method == "POST":
-        try:
-            cep = data["cep"]
-            # Verifique se o campo "cep" não está vazio ou nulo
-            if not cep:
-                return render(
-                    request,
-                    "FreteApp/cotacoes.html",
-                    {"error_message": "O campo CEP não pode estar vazio."},
-                )
-
-            # Consultar o endereço com base no CEP
-            try:
-                end = consultar_endereco(cep)
-                print(end)
-            except KeyError:
-                return render(
-                    request,
-                    "FreteApp/cotacoes.html",
-                    {"error_message": "Erro ao consultar o endereço."},
-                )
-
-            # Continuar com o processamento
-            return render(request, "FreteApp/cotacoes.html")
-
-        except KeyError:
-            return render(
-                request,
-                "FreteApp/cotacoes.html",
-                {"error_message": "Erro no processamento do formulário."},
-            )
-    else:
+    if data["cep"]:
+        end = consultar_endereco(data["cep"])
+        if not end:
+            print("CEP inválido")
+            messages.add_message(request, messages.ERROR, "CEP inválido")
         return render(request, "FreteApp/cotacoes.html")
+
