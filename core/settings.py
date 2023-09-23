@@ -133,7 +133,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # settings.py
 SESSION_COOKIE_AGE = (
-    60  # Defina o tempo de expiração da sessão em segundos (2 semanas, por padrão)
+    6000  # Defina o tempo de expiração da sessão em segundos (2 semanas, por padrão)
 )
 
 LOGIN_REDIRECT_URL = (

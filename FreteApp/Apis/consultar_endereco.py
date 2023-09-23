@@ -29,7 +29,7 @@ def consultar_endereco(cep):
             return data["result"]
 
         if response.status_code == 404:
-            raise Exception(f"Erro:{response.status_code}: {cep}")
+            raise Exception({"Erro": 400})
 
         if response.status_code == 500:
             raise Exception(
@@ -37,4 +37,4 @@ def consultar_endereco(cep):
             )
 
     except Exception as e:
-        return str(e)
+        return e
