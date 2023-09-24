@@ -20,7 +20,6 @@ def validar_cep(cep):
 def consultar_endereco(cep):
     status = [200, 404, 505]
     try:
-        cep = validar_cep(cep)
         url = f"https://brasilaberto.com/api/v1/zipcode/{cep}"
         response = requests.get(url=url)
 

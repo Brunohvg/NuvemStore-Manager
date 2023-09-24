@@ -1,10 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-from .Apis.consultar_endereco import consultar_endereco
+from .Apis.calculador_frete import CalculadoraFrete
 from django.contrib import messages
-
-
-from django.http import HttpResponse
 
 
 @login_required
@@ -35,13 +32,52 @@ def _handle_post(request):
         data = handle_request
         return _handle_end(request, data)
 
-from django.contrib import messages
 
+@login_required
 def _handle_end(request, data):
-    if data["cep"]:
-        end = consultar_endereco(data["cep"])
-        if not end:
-            print("CEP inválido")
-            messages.add_message(request, messages.ERROR, "CEP inválido")
+    calculadora = CalculadoraFrete("30170130")
+    cep = data["cep"]
+    if cep:
+        endereco = calculadora.consultar_endereco(cep)
+        if not endereco:
+            messages.add_message(
+                request, messages.ERROR, f"Atenção o cep: {cep} é invalido"
+            )
+        else:
+            end_request = {
+                "rua": endereco["street"],
+                "bairro": endereco["district"],
+                "cidade": endereco["city"],
+                "uf": endereco["stateShortname"],
+                "cep": endereco["zipcode"],
+                "complemento": endereco["complement"],
+            }
+            return _handle_valor_correio(request, data, end_request)
+            # return render(request, "FreteApp/cotacoes.html", context=end_request)
         return render(request, "FreteApp/cotacoes.html")
 
+
+def _handle_valor_correio(request, data, end_request):
+    calculadora = CalculadoraFrete("30170130")
+    cep = data["cep"]
+    peso = data["peso"]
+    comprimento = data["comprimento"]
+    largura = data["largura"]
+    altura = data["altura"]
+    data_correio = calculadora.consultar_valor_correio(
+        cep, peso, comprimento, largura, altura
+    )
+    dados_sedex = data_correio[0]
+    dados_pac = data_correio[1]
+
+    correio_request = {
+        "valor_sedex": dados_sedex["Valor"],
+        "prazo_sedex": dados_sedex["PrazoEntrega"],
+        "valor_pac": dados_pac["Valor"],
+        "prazo_pac": dados_pac["PrazoEntrega"],
+    }
+    print(correio_request.get("prazo_pac"))
+
+    return render(
+        request, "FreteApp/cotacoes.html", context={**correio_request, **end_request}
+    )

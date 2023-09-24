@@ -5,14 +5,6 @@
     <div class="col-md-12">
       <label for="cep" class="form-label">CEP</label>
       <input type="text" maxlength="9" class="form-control" id="cep" name="cep" placeholder="Digite seu CEP" required />
-      {% if messages %}
-      <ul class="messages">
-          {% for message in messages %}
-              <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-          {% endfor %}
-      </ul>
-  {% endif %}
-  
     </div>
     <div class="col-md-3">
       <label for="altura" class="form-label">Altura</label>
@@ -36,17 +28,12 @@
     </div>
   </form>
 
-  {% if localidade %}
+  {% if cep %}
     <div class="card-header text-center custom-texto-valor">
       <h6>
         <p class="custom-texto-valor">Endereço para entrega</p>
-        {{ error_message }}
-        <p class="custom-texto-valor">{{ logradouro }}, {{ bairro }} - {{ localidade }} - {{ uf }} - {{ cep }}</p>
+        <p class="custom-texto-valor">{{ rua }}, {{ bairro }} - {{ cidade }} - {{ uf }} - {{ cep }}</p>
       </h6>
-    </div>
-  {% else %}
-    <div class="card-header text-center custom-texto-valor">
-      <h6><p class="custom-texto-valor">{{ endereco }}</p></h6>
     </div>
   {% endif %}
 </div>

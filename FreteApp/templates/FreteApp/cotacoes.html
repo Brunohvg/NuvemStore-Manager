@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 
-
+{% block cardalert %}
+  {% include 'FreteApp/includes/card-alert.html' %}
+{% endblock %}
 
 {% block content %}
-
-{% include 'FreteApp/includes/form-consultar-preco.html' %}
-{% include 'FreteApp/includes/resultado-cotacao.html' %}
+  {% include 'FreteApp/includes/form-consultar-preco.html' %}
+  {% include 'FreteApp/includes/resultado-cotacao.html' %}
 {% endblock %}
