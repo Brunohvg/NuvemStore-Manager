@@ -30,7 +30,7 @@ def login_user(request):
                 login(request, user_auth)
                 print(user_auth)
 
-                return redirect("FreteApp:base")
+                return redirect("FreteApp:dashboard")
             else:
                 messages.error(request, "Usuário ou senha inválido.")
         else:

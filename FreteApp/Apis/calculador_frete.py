@@ -21,6 +21,30 @@ class CalculadoraFrete:
         except ValueError as e:
             return None
 
+    def consultar_endereco(self, cep_destino):
+        cep_destino_valido = self.validar_cep(cep_destino)
+        if not cep_destino_valido:
+            return {"erro": "CEP de destino inválido."}
+
+        try:
+            url = f"https://brasilaberto.com/api/v1/zipcode/{cep_destino_valido}"
+            response = requests.get(url=url)
+
+            if response.status_code == 200:
+                data = response.json()
+                return data["result"]
+
+            if response.status_code == 404:
+                raise Exception({"Erro": 400})
+
+            if response.status_code == 500:
+                raise Exception(
+                    f"Erro:{response.status_code}: Sistema Indisponivel no momento"
+                )
+
+        except Exception as e:
+            return None
+
     def consultar_valor_correio(self, cep_destino, peso, comprimento, largura, altura):
         # Valida o CEP de destino antes de prosseguir
         cep_destino_valido = self.validar_cep(cep_destino)
@@ -95,30 +119,6 @@ class CalculadoraFrete:
             # Pode retornar uma mensagem de erro, logar o erro, etc.
             print("Erro na requisição:", e)
             return {"erro": "Ocorreu um erro na consulta à API externa."}
-
-    def consultar_endereco(self, cep_destino):
-        cep_destino_valido = self.validar_cep(cep_destino)
-        if not cep_destino_valido:
-            return {"erro": "CEP de destino inválido."}
-
-        try:
-            url = f"https://brasilaberto.com/api/v1/zipcode/{cep_destino_valido}"
-            response = requests.get(url=url)
-
-            if response.status_code == 200:
-                data = response.json()
-                return data["result"]
-
-            if response.status_code == 404:
-                raise Exception({"Erro": 400})
-
-            if response.status_code == 500:
-                raise Exception(
-                    f"Erro:{response.status_code}: Sistema Indisponivel no momento"
-                )
-
-        except Exception as e:
-            return None
 
 
 """# Exemplo de uso
