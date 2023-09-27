@@ -135,7 +135,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 SESSION_COOKIE_AGE = (
     6000  # Defina o tempo de expiração da sessão em segundos (2 semanas, por padrão)
 )
-
+LOGIN_URL = "UsersApp:login"
 LOGIN_REDIRECT_URL = (
-    "UsersApp:login_user"  # Substitua 'FreteApp:base' pela sua URL desejada
+    "FreteApp:dashboard"  # Substitua 'FreteApp:base' pela sua URL desejada
 )

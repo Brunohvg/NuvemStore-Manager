@@ -40,7 +40,7 @@ def login_user(request):
 
 
 def user_logout(request):
-    logout(request, "deslogado")
+    logout(request)
 
     return redirect("UsersApp:login")
 

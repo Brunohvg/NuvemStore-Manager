@@ -4,6 +4,7 @@ from .Apis.calculador_frete import CalculadoraFrete
 from django.contrib import messages
 
 
+
 @login_required
 def dashboard(request):
     return render(request, "FreteApp/dashboard.html")
