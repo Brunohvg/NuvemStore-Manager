@@ -121,6 +121,7 @@ class CalculadoraFrete:
             return {"erro": "Ocorreu um erro na consulta à API externa."}
 
 
+
 """# Exemplo de uso
 calculadora = CalculadoraFrete('30170130')
 cep_destino = "34600190"

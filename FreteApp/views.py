@@ -4,6 +4,12 @@ from .Apis.calculador_frete import CalculadoraFrete
 from django.contrib import messages
 
 
+def converter(valor):
+    valor = valor.replace(",", ".")
+    valor = float(valor)
+    valor = round(valor, 2)  # Arredonda o valor para duas casas decimais
+    return valor
+
 
 @login_required
 def dashboard(request):
@@ -79,10 +85,13 @@ def _handle_valor_correio(request, data, end_request):
         dados_sedex = data_correio[0]
         dados_pac = data_correio[1]
 
+        valor_sedex = converter(dados_sedex["Valor"])
+        valor_pac = converter(dados_pac["Valor"])
+
         correio_request = {
-            "valor_sedex": dados_sedex["Valor"],
+            "valor_sedex": valor_sedex,
             "prazo_sedex": dados_sedex["PrazoEntrega"],
-            "valor_pac": dados_pac["Valor"],
+            "valor_pac": valor_pac,
             "prazo_pac": dados_pac["PrazoEntrega"],
         }
 

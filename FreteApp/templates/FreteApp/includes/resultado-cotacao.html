@@ -1,45 +1,44 @@
+{% if valor_sedex %}
 <div class="row g-4 mb-4">
-  <div class="col-4 col-lg-4">
-    <div class="app-card-body p-3 p-lg-2">
-      <div class="app-card app-card-stat shadow-sm h-100">
-        <div class="card-header p-lg-4" style="background-color: #FA8532; color: #fff;">
-          <p>SEDEX</p>
-        </div>
-        <div class="container text-center">
-          {% if cep %}
-          <div>{{ prazo_sedex }}</div>
-          <div>{{ valor_sedex }}</div>
-          {% endif %}
-        </div>
-      </div>
-    </div>
+  <div class="col-12 col-md-4">
+    <div class="app-card app-card-settings shadow-sm p-4">
+  
+  <div class="app-card-body">
+  <div class="mb-2"><strong>Tipo de envio:</strong> Sedex</div>
+  <div class="mb-2"><strong>Status:</strong> <span class="badge bg-success">Disponível</span></div>
+  <div class="mb-2"><strong>Prazo:</strong> {{ prazo_sedex }} {% if prazo_sedex == '1' %} Dia útil {% else %} Dias úteis {% endif %}</div>
+  <div class="mb-4"><strong>Valor:</strong> R${{ valor_sedex }}</div>
+  </div><!--//app-card-body-->
+  </div><!--//app-card-->
   </div>
 
-  <div class="col-4 col-lg-4">
-    <div class="app-card-body p-3 p-lg-2">
-      <div class="app-card app-card-stat shadow-sm h-100">
-        <div class="card-header p-lg-4" style="background-color: #2A68D3;  color: #fff;">
-          <p>PAC</p>
-        </div>
-        <div class="container text-center">
-          <div>{{ prazo_pac }}</div>
-          <div>{{ valor_pac }}</div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div class="col-12 col-md-4">
+    <div class="app-card app-card-settings shadow-sm p-4">
+  
+  <div class="app-card-body">
+  <div class="mb-2"><strong>Tipo de envio:</strong> Pac</div>
+  <div class="mb-2"><strong>Status:</strong> <span {% if valor_sedex >= valor_pac %}class="badge bg-success"{% else %}class="badge bg-danger"{% endif %}>{% if valor_sedex >= valor_pac %}Disponível {% else %} Indisponível{% endif %}</span></div>
+  <div class="mb-2"><strong>Prazo:</strong> {{prazo_pac}} dias uteis </div>
+  <div class="mb-4 mt-15"><strong>Valor:</strong> R$ {{ valor_pac }} </div>
 
-  <div class="col-4 col-lg-4">
-    <div class="app-card-body p-3 p-lg-2">
-      <div class="app-card app-card-stat shadow-sm h-100">
-        <div class="card-header p-lg-4" style="background-color: #198754; color: #fff;">
-          <p>MOTOBOY</p>
-        </div>
-        <div class="container text-center">
-          <div>{{ prazo_pac }}</div>
-          <div>{{ valor_motoboy }}</div>
-        </div>
-      </div>
-    </div>
+    
+  </div><!--//app-card-body-->
+  
+  </div><!--//app-card-->
+  </div>
+  <div class="col-12 col-md-4">
+    <div class="app-card app-card-settings shadow-sm p-4">
+  
+  <div class="app-card-body">
+  <div class="mb-2"><strong>Tipo de envio:</strong> Motoboy</div>
+  <div class="mb-2"><strong>Status:</strong> <span class="badge bg-success">Active</span></div>
+  <div class="mb-2"><strong>Prazo:</strong> 1 Dia útil</div>
+  <div class="mb-4"><strong>Valor:</strong> R$ {{ valor_motoboy }}</div>
+
+    
+  </div><!--//app-card-body-->
+  
+  </div><!--//app-card-->
   </div>
 </div>
+{% endif %}
