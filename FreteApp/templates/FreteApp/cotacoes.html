@@ -4,7 +4,26 @@
   {% include 'FreteApp/includes/card-alert.html' %}
 {% endblock %}
 
+{% block titulo %}
+<div class="row justify-content-between">
+  <div class="col-auto">
+    <p>Calculadora</p>
+  </div>
+  <div class="col-auto">
+    <a {% if not valor_motoboy %}class="btn app-btn-orange disabled" {% else %}class="btn app-btn-orange"{% endif %} class="btn app-btn-orange disabled"  data-bs-toggle="modal" data-bs-target="#exampleModal" href="#">Criar entrega motoboy</a>
+  
+    
+  </div>
+</div>
+
+{% endblock titulo %}
+
+
 {% block content %}
+
+  {% include 'FreteApp/includes/modal.html' %}
+
+
   {% include 'FreteApp/includes/form-consultar-preco.html' %}
   {% include 'FreteApp/includes/resultado-cotacao.html' %}
 {% endblock %}

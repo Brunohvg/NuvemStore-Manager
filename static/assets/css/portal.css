@@ -3504,15 +3504,6 @@ textarea.form-control.is-invalid {
     box-shadow: var(--bs-btn-focus-box-shadow)
 }
 
-.btn:disabled,
-.btn.disabled,
-fieldset:disabled .btn {
-    color: var(--bs-btn-disabled-color);
-    pointer-events: none;
-    background-color: var(--bs-btn-disabled-bg);
-    border-color: var(--bs-btn-disabled-border-color);
-    opacity: var(--bs-btn-disabled-opacity)
-}
 
 .btn-primary {
     --bs-btn-color: #000;
@@ -13991,6 +13982,31 @@ button.close:focus {
     background: #2F74EB;
     border-color: #2F74EB
 }
+
+.app-btn-orange {
+    background: #fc7200;
+    color: #fff;
+    border-color: #fc7200;
+}
+
+
+.app-btn-orange:hover,
+.app-btn-primary:active {
+    color: #fff;
+    background: #FA8532;
+    border-color: #FA8532
+}
+
+.btn:disabled,
+.btn.disabled,
+fieldset:disabled .btn {
+    color: var(--bs-btn-disabled-color);
+    pointer-events: none;
+    background-color: var(--bs-gray-600);
+    border-color: var(--bs-btn-disabled-border-color);
+    opacity: var(--bs-btn-disabled-opacity);
+}
+
 
 .app-btn-secondary {
     background: #fff;

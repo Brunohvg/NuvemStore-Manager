@@ -1,8 +1,7 @@
 {% if valor_sedex %}
-<div class="row g-4 mb-4">
+<div class="row g-0 mb-4">
   <div class="col-12 col-md-4">
     <div class="app-card app-card-settings shadow-sm p-4">
-  
   <div class="app-card-body">
   <div class="mb-2"><strong>Tipo de envio:</strong> Sedex</div>
   <div class="mb-2"><strong>Status:</strong> <span class="badge bg-success">Disponível</span></div>
@@ -14,7 +13,6 @@
 
   <div class="col-12 col-md-4">
     <div class="app-card app-card-settings shadow-sm p-4">
-  
   <div class="app-card-body">
   <div class="mb-2"><strong>Tipo de envio:</strong> Pac</div>
   <div class="mb-2"><strong>Status:</strong> <span {% if valor_sedex >= valor_pac %}class="badge bg-success"{% else %}class="badge bg-danger"{% endif %}>{% if valor_sedex >= valor_pac %}Disponível {% else %} Indisponível{% endif %}</span></div>
@@ -28,17 +26,14 @@
   </div>
   <div class="col-12 col-md-4">
     <div class="app-card app-card-settings shadow-sm p-4">
-  
   <div class="app-card-body">
   <div class="mb-2"><strong>Tipo de envio:</strong> Motoboy</div>
   <div class="mb-2"><strong>Status:</strong> <span class="badge bg-success">Active</span></div>
   <div class="mb-2"><strong>Prazo:</strong> 1 Dia útil</div>
   <div class="mb-4"><strong>Valor:</strong> R$ {{ valor_motoboy }}</div>
-
-    
   </div><!--//app-card-body-->
-  
   </div><!--//app-card-->
   </div>
+
 </div>
 {% endif %}
