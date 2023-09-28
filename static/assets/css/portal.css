@@ -185,6 +185,7 @@
     }
 }
 
+
 body {
     margin: 0;
     font-family: var(--bs-body-font-family);
@@ -13997,12 +13998,19 @@ button.close:focus {
     border-color: #FA8532
 }
 
+
 .btn:disabled,
 .btn.disabled,
 fieldset:disabled .btn {
+    /* desabilitado
     color: var(--bs-btn-disabled-color);
     pointer-events: none;
     background-color: var(--bs-gray-600);
+    border-color: var(--bs-btn-disabled-border-color);
+    opacity: var(--bs-btn-disabled-opacity); */
+    color: #605f5e;
+    pointer-events: none;
+    background-color: #e7e8ea;
     border-color: var(--bs-btn-disabled-border-color);
     opacity: var(--bs-btn-disabled-opacity);
 }

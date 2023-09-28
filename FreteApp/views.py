@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from .Apis.calculador_frete import CalculadoraFrete
 from django.contrib import messages
+from .forms import FormEndereco, FormCliente, FormEntrega
 
 
 def converter(valor):
@@ -109,15 +110,27 @@ def _handle_valor_correio(request, data, end_request):
 
 def _handle_valor_motoboy(request, data, end_request, correio_request):
     calculador = CalculadoraFrete("30170130")
+    form_endereco = FormEndereco()
+    form_cliente = FormCliente()
+    form_entrega = FormEntrega()
     cep = data["cep"]
     if cep:
         valor_motoboy = calculador.consultar_valor_motoboy(cep)
         motoboy_request = {"valor_motoboy": valor_motoboy}
-
+        form_endereco = {"form_endereco": form_endereco}
+        form_cliente = {"form_cliente": form_cliente}
+        form_entrega = {"form_entrega": form_entrega}
         return render(
             request,
             "FreteApp/cotacoes.html",
-            context={**correio_request, **end_request, **motoboy_request},
+            context={
+                **correio_request,
+                **end_request,
+                **motoboy_request,
+                **form_endereco,
+                **form_cliente,
+                **form_entrega,
+            },
         )
     return render(
         request,
@@ -127,3 +140,7 @@ def _handle_valor_motoboy(request, data, end_request, correio_request):
             **end_request,
         },
     )
+
+
+def _handle_form_cliente(request, end_request, motoboy_request):
+    ...

@@ -39,6 +39,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # Arquivo config Crispy
+    "crispy_forms",
+    "crispy_bootstrap5",
+    #########################
     "FreteApp",
     "UsersApp",
 ]
@@ -139,3 +143,7 @@ LOGIN_URL = "UsersApp:login"
 LOGIN_REDIRECT_URL = (
     "FreteApp:dashboard"  # Substitua 'FreteApp:base' pela sua URL desejada
 )
+
+# Arquivo de outros programas
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"

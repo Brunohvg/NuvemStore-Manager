@@ -1,9 +1,10 @@
 
 <!-- Modal -->
+
 <form class="row g-2" action="#" method="post">
     {% csrf_token %}
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
+      <div class="modal-dialog modal-lg"">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Cadastro de entregas</h5>
@@ -11,10 +12,12 @@
           </div>
           <div class="modal-body row g-2">
             <h6 class="modal-title" id="exampleModalLabel">Dados do endereço</h6>
-            
+            {% include 'FreteApp/includes/form-endereco.html' %}
 
             <h6 class="modal-title" id="exampleModalLabel">Dados do cliente</h6>
-            
+            {% include 'FreteApp/includes/form-cliente.html' %}
+
+            {% include 'FreteApp/includes/form-entrega.html' %}
           </div>
           <div class="modal-footer">
             <button type="button" class="btn app-btn-orange" data-bs-dismiss="modal">Fechar</button>
