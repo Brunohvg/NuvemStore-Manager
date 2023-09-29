@@ -139,60 +139,49 @@ def listar_entregas(request):
     t_entregas = {
         "todas_entregas": todas_entregas,
     }
+
     if request.method == "POST":
         try:
-            return _handle_create_endereco(request, t_entregas)
+            create_endereco(request)
         except ValidationError as e:
-            # Trate a exceção ValidationError aqui, por exemplo, exibindo uma mensagem de erro.
+            messages.error(request, f"Atenção: o CEP {e} é inválido.")
             return HttpResponseServerError(f"Erro ao criar endereço: {e}")
 
     return render(request, "FreteApp/list_entregas.html", context=t_entregas)
 
 
-def _handle_create_endereco(request, t_entregas):
-    try:
-        create_enderco = Endereco.objects.create(
-            logradouro=request.POST.get("logradouro"),
-            cidade=request.POST.get("cidade"),
-            bairro=request.POST.get("bairro"),
-            numero=request.POST.get("numero"),
-            complemento=request.POST.get("complemento"),
-            uf=request.POST.get("uf"),
-            cep=request.POST.get("cep"),
-        )
-    except ValidationError as e:
-        # Trate a exceção ValidationError aqui, por exemplo, exibindo uma mensagem de erro.
-        return HttpResponseServerError(f"Erro ao criar endereço: {e}")
+def create_endereco(request):
+    endereco_data = {
+        "logradouro": request.POST.get("logradouro"),
+        "cidade": request.POST.get("cidade"),
+        "bairro": request.POST.get("bairro"),
+        "numero": request.POST.get("numero"),
+        "complemento": request.POST.get("complemento"),
+        "uf": request.POST.get("uf"),
+        "cep": request.POST.get("cep"),
+    }
 
-    return _handle_create_cliente(request, create_enderco, t_entregas)
+    create_cliente(request, endereco_data)
 
 
-def _handle_create_cliente(request, create_enderco, t_entregas):
-    try:
-        create_cliente = Cliente.objects.create(
-            endereco=create_enderco,
-            nome=request.POST.get("nome"),
-            telefone=request.POST.get("telefone"),
-        )
-    except ValidationError as e:
-        # Trate a exceção ValidationError aqui, por exemplo, exibindo uma mensagem de erro.
-        return HttpResponseServerError(f"Erro ao criar cliente: {e}")
+def create_cliente(request, endereco_data):
+    cliente_data = {
+        "endereco": Endereco.objects.create(**endereco_data),
+        "nome": request.POST.get("nome"),
+        "telefone": request.POST.get("telefone"),
+    }
 
-    return _handle_create_entrega(request, create_cliente, t_entregas)
+    create_entrega(request, cliente_data)
 
 
-def _handle_create_entrega(request, create_cliente, t_entregas):
-    try:
-        Entrega.objects.create(
-            cliente=create_cliente,
-            pedido_numero=request.POST.get("pedido_numero"),
-            informacoes=request.POST.get("informacoes"),
-            status=request.POST.get("status"),
-            payment_pedido=request.POST.get("payment_pedido"),
-            payment_motoboy=request.POST.get("payment_motoboy"),
-        )
-    except ValidationError as e:
-        # Trate a exceção ValidationError aqui, por exemplo, exibindo uma mensagem de erro.
-        return HttpResponseServerError(f"Erro ao criar entrega: {e}")
+def create_entrega(request, cliente_data):
+    entrega_data = {
+        "cliente": Cliente.objects.create(**cliente_data),
+        "pedido_numero": request.POST.get("pedido_numero"),
+        "informacoes": request.POST.get("informacoes"),
+        "status": request.POST.get("status"),
+        "payment_pedido": request.POST.get("payment_pedido"),
+        "payment_motoboy": request.POST.get("payment_motoboy"),
+    }
 
-    return render(request, "FreteApp/list_entregas.html", context=t_entregas)
+    Entrega.objects.create(**entrega_data)
