@@ -130,47 +130,69 @@ def handle_valor_motoboy(request, data, end_data, correio_data):
     return render(request, "FreteApp/cotacoes.html")
 
 
+from django.core.exceptions import ValidationError
+from django.http import HttpResponseServerError
+
+
 def listar_entregas(request):
     todas_entregas = Entrega.objects.all()
     t_entregas = {
         "todas_entregas": todas_entregas,
     }
     if request.method == "POST":
-        return _handle_create_endereco(request)
+        try:
+            return _handle_create_endereco(request, t_entregas)
+        except ValidationError as e:
+            # Trate a exceção ValidationError aqui, por exemplo, exibindo uma mensagem de erro.
+            return HttpResponseServerError(f"Erro ao criar endereço: {e}")
 
     return render(request, "FreteApp/list_entregas.html", context=t_entregas)
 
 
-def _handle_create_endereco(request):
-    create_enderco = Endereco.objects.create(
-        logradouro=request.POST.get("logradouro"),
-        cidade=request.POST.get("cidade"),
-        bairro=request.POST.get("bairro"),
-        numero=request.POST.get("numero"),
-        complemento=request.POST.get("complemento"),
-        uf=request.POST.get("uf"),
-        cep=request.POST.get("cep"),
-    )
-    return _handle_create_cliente(request, create_enderco)
+def _handle_create_endereco(request, t_entregas):
+    try:
+        create_enderco = Endereco.objects.create(
+            logradouro=request.POST.get("logradouro"),
+            cidade=request.POST.get("cidade"),
+            bairro=request.POST.get("bairro"),
+            numero=request.POST.get("numero"),
+            complemento=request.POST.get("complemento"),
+            uf=request.POST.get("uf"),
+            cep=request.POST.get("cep"),
+        )
+    except ValidationError as e:
+        # Trate a exceção ValidationError aqui, por exemplo, exibindo uma mensagem de erro.
+        return HttpResponseServerError(f"Erro ao criar endereço: {e}")
+
+    return _handle_create_cliente(request, create_enderco, t_entregas)
 
 
-def _handle_create_cliente(request, create_enderco):
-    create_cliente = Cliente.objects.create(
-        endereco=create_enderco,
-        nome=request.POST.get("nome"),
-        telefone=request.POST.get("telefone"),
-    )
-    return _handle_create_entrega(request, create_cliente)
+def _handle_create_cliente(request, create_enderco, t_entregas):
+    try:
+        create_cliente = Cliente.objects.create(
+            endereco=create_enderco,
+            nome=request.POST.get("nome"),
+            telefone=request.POST.get("telefone"),
+        )
+    except ValidationError as e:
+        # Trate a exceção ValidationError aqui, por exemplo, exibindo uma mensagem de erro.
+        return HttpResponseServerError(f"Erro ao criar cliente: {e}")
+
+    return _handle_create_entrega(request, create_cliente, t_entregas)
 
 
-def _handle_create_entrega(request, create_cliente):
-    Entrega.objects.create(
-        cliente=create_cliente,
-        pedido_numero=request.POST.get("pedido_numero"),
-        informacoes=request.POST.get("informacoes"),
-        status=request.POST.get("status"),
-        payment_pedido=request.POST.get("payment_pedido"),
-        payment_motoboy=request.POST.get("payment_motoboy"),
-    )
-    listar_entregas = {"listar_entregas": Entrega.objects.all()}
-    return render(request, "FreteApp/list_entregas.html", context=listar_entregas)
+def _handle_create_entrega(request, create_cliente, t_entregas):
+    try:
+        Entrega.objects.create(
+            cliente=create_cliente,
+            pedido_numero=request.POST.get("pedido_numero"),
+            informacoes=request.POST.get("informacoes"),
+            status=request.POST.get("status"),
+            payment_pedido=request.POST.get("payment_pedido"),
+            payment_motoboy=request.POST.get("payment_motoboy"),
+        )
+    except ValidationError as e:
+        # Trate a exceção ValidationError aqui, por exemplo, exibindo uma mensagem de erro.
+        return HttpResponseServerError(f"Erro ao criar entrega: {e}")
+
+    return render(request, "FreteApp/list_entregas.html", context=t_entregas)
