@@ -57,7 +57,7 @@ def signup(request):
             return HttpResponse("Usuário já existe. Escolha outro nome de usuário.")
 
         # Criar um novo usuário
-        user = User.objects.create_user(username=email, email=email, password=password)
+        user = User.objects.create_user(username='Bruno', email='brunovidal@gmail.com', password=123456)
         user.save()
 
         # Redirecionar para outra página após o registro bem-sucedido
