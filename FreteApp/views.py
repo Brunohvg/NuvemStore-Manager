@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .Apis.calculador_frete import CalculadoraFrete
 from django.contrib import messages
 from .forms import FormEndereco, FormCliente, FormEntrega
@@ -142,5 +142,28 @@ def _handle_valor_motoboy(request, data, end_request, correio_request):
     )
 
 
-def _handle_form_cliente(request, end_request, motoboy_request):
-    ...
+def cliente(request):
+    if request.method == "POST":
+        form_endereco = FormEndereco(request.POST)
+        form_cliente = FormCliente(request.POST)
+        form_entrega = FormEntrega(request.POST)
+
+        if (
+            form_endereco.is_valid()
+            and form_cliente.is_valid()
+            and form_entrega.is_valid()
+        ):
+            # Salvar os dados dos formulários em objetos de modelo
+            endereco = form_endereco.save()
+            cliente = form_cliente.save()
+            entrega = form_entrega.save(
+                commit=False
+            )  # Não salvamos ainda para vincular ao cliente
+            entrega.cliente = cliente
+            entrega.save()
+
+            # Faça o que desejar com os objetos de modelo
+
+            # Redirecionar ou renderizar uma página de sucesso
+            return redirect("FreteApp:dashboard")
+        return redirect("FreteApp:dashboard")

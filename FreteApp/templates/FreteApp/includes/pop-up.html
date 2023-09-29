@@ -1,0 +1,42 @@
+<form class="row g-2" action="{% url "FreteApp:salvar" %}" method="post">
+  {% csrf_token %}
+
+  <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+    tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalToggleLabel">Endereço</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body row g-2">
+          {% include "FreteApp/includes/form-endereco.html" %}
+        </div>
+        <div class="modal-footer">
+          <button class="btn app-btn-orange" data-bs-target="#exampleModalToggle2"
+            data-bs-toggle="modal">Próximo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+    tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalToggleLabel2">Dados Cliente</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body row g-2">
+          {% include "FreteApp/includes/form-cliente.html" %}
+          {% include "FreteApp/includes/form-entrega.html" %}
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-secondary" data-bs-target="#exampleModalToggle"
+            data-bs-toggle="modal">Voltar</button>
+          <button type="submit" class="btn app-btn-primary">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
