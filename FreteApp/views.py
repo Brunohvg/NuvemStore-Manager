@@ -4,6 +4,8 @@ from .Apis.calculador_frete import CalculadoraFrete
 from django.contrib import messages
 from .forms import FormEndereco, FormCliente, FormEntrega
 from .models import Entrega, Endereco, Cliente
+from django.core.exceptions import ValidationError
+from django.http import HttpResponseServerError
 
 # Configurações
 CEP_PADRAO = "30170130"  # Valor do CEP padrão
@@ -128,10 +130,6 @@ def handle_valor_motoboy(request, data, end_data, correio_data):
         }
         return render(request, "FreteApp/cotacoes.html", context)
     return render(request, "FreteApp/cotacoes.html")
-
-
-from django.core.exceptions import ValidationError
-from django.http import HttpResponseServerError
 
 
 def listar_entregas(request):
