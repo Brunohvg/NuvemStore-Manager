@@ -115,11 +115,20 @@ def handle_valor_motoboy(request, data, end_data, correio_data):
     calculador = CalculadoraFrete(CEP_PADRAO)
     cep = data["cep"]
     if cep:
+        conteudo_inicial = {
+            "logradouro": end_data["rua"],
+            "bairro": end_data["bairro"],
+            "uf": end_data["uf"],
+            "cep": end_data["cep"],
+            "cidade": end_data["cidade"],
+        }
         valor_motoboy = calculador.consultar_valor_motoboy(cep)
+        valor = converter_valor(valor_motoboy)
         motoboy_data = {"valor_motoboy": valor_motoboy}
-        form_endereco = FormEndereco()
+        preco_inicial = {"valor_entrega": valor}
+        form_endereco = FormEndereco(initial=conteudo_inicial)
         form_cliente = FormCliente()
-        form_entrega = FormEntrega()
+        form_entrega = FormEntrega(initial=preco_inicial)
         context = {
             **correio_data,
             **end_data,
@@ -177,7 +186,7 @@ def create_entrega(request, cliente_data):
         "cliente": Cliente.objects.create(**cliente_data),
         "pedido_numero": request.POST.get("pedido_numero"),
         "informacoes": request.POST.get("informacoes"),
-        "status": request.POST.get("status"),
+        "valor_entrega": request.POST.get("valor_entrega"),
         "payment_pedido": request.POST.get("payment_pedido"),
         "payment_motoboy": request.POST.get("payment_motoboy"),
     }

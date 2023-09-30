@@ -41,7 +41,7 @@
 <path fill-rule="evenodd" d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"></path>
 <path fill-rule="evenodd" d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"></path>
 </svg>
-                Download CSV
+                Criar entrega
             </a>
             </div>
           </div><!--//row-->
@@ -76,15 +76,18 @@
                 </tr>
               </thead>
               <tbody>
+                {% for entrega in todas_entregas %}
                 <tr>
-                  <td class="cell">#15346</td>
-                  <td class="cell"><span class="truncate">Lorem ipsum dolor sit amet eget volutpat erat</span></td>
-                  <td class="cell">John Sanders</td>
-                  <td class="cell"><span>17 Oct</span><span class="note">2:16 PM</span></td>
-                  <td class="cell"><span class="badge bg-success">Paid</span></td>
-                  <td class="cell">$259.35</td>
+                  <td class="cell">{{ entrega.pedido_numero }}</td>
+                  <td class="cell"><span class="truncate">{{entrega.cliente}}</span></td>
+                  <td class="cell">{{entrega.cliente.endereco.bairro}}</td>
+                  <td class="cell"><span class="note">{{entrega.data_hora}}</span></td>
+                  <td class="cell"><span class="badge bg-success">{{ entrega.get_payment_motoboy_display }}</span></td>
+                  <td class="cell">{{entrega.valor_entrega}}</td>
                   <td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
                 </tr>
+                {% endfor %}
+
               </tbody>
             </table>
               </div><!--//table-responsive-->

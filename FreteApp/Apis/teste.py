@@ -13,4 +13,4 @@ def converter(valor):
     return valor
 
 
-print(converter(te))
+print(type(te))

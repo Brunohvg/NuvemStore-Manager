@@ -109,7 +109,7 @@ class CalculadoraFrete:
             valor_boy = int(float(response["order"]["payment_amount"]))
 
             if valor_boy <= 18:
-                valor = "18.00"
+                valor = "18,00"
                 return valor
             else:
                 return response["order"]["payment_amount"]
@@ -119,7 +119,6 @@ class CalculadoraFrete:
             # Pode retornar uma mensagem de erro, logar o erro, etc.
             print("Erro na requisição:", e)
             return {"erro": "Ocorreu um erro na consulta à API externa."}
-
 
 
 """# Exemplo de uso

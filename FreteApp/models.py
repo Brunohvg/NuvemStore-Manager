@@ -43,6 +43,7 @@ class Entrega(models.Model):
     payment_motoboy = models.IntegerField(
         choices=STATUS_PAYMENT, default=0, verbose_name="M.pago"
     )
+    valor_entrega = models.DecimalField(max_digits=10, decimal_places=2)
 
     def endereco_entrega(self):
         return self.cliente.endereco
