@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     #########################
     "FreteApp",
     "UsersApp",
+    "LinkApp",
 ]
 
 MIDDLEWARE = [
