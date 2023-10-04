@@ -228,7 +228,7 @@ def gerar_pdf(request, identificador):
     # Defina o cabeçalho do PDF para download
     response[
         "Content-Disposition"
-    ] = f'attachment; filename="{entrega.identificador}.pdf"'
+    ] = f'attachment; filename="{entrega.cliente}{entrega.identificador}.pdf"'
     pdf = canvas.Canvas(response, pagesize=A4)
     pdf.drawString(mm_p(100), mm_p(280), "Loja Bibelô")
 

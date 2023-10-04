@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+{% include "FreteApp/includes/excluir.html" %}
 <section class="section-body">
     <div class="row">
         <div class="col-12">
@@ -25,9 +27,9 @@
                             <li class="pb-1 mb-1"><strong class="mr-1">Motoboy:</strong>
                                 {{entrega.get_payment_motoboy_display}}</li>
                         <div>
-                            <a class="btn btn-danger m-1"
-                                href="{% url 'FreteApp:deletar_entrega' entrega.identificador %}">Deletar</a>
-                            <a class="btn btn-success m-1"
+                            <a class="btn app-btn-orange m-1" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                            href="">Deletar</a>
+                            <a class="btn app-btn-primary m-1"
                                 href="{% url 'FreteApp:gerar_pdf' entrega.identificador %}">Imprimir</a>
                             
                             <br>
