@@ -1,11 +1,14 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .Apis.calculador_frete import CalculadoraFrete
 from django.contrib import messages
 from .forms import FormEndereco, FormCliente, FormEntrega
 from .models import Entrega, Endereco, Cliente
 from django.core.exceptions import ValidationError
-from django.http import HttpResponseServerError
+from django.http import HttpResponse
+from django.http import HttpResponse
+from reportlab.lib.pagesizes import A4
+from reportlab.pdfgen import canvas
 
 # Configurações
 CEP_PADRAO = "30170130"  # Valor do CEP padrão
@@ -15,6 +18,10 @@ def converter_valor(valor):
     valor = valor.replace(",", ".")
     valor = round(float(valor), 2)  # Arredonda o valor para duas casas decimais
     return valor
+
+
+def mm_p(m):
+    return m / 0.352777
 
 
 @login_required
@@ -141,6 +148,7 @@ def handle_valor_motoboy(request, data, end_data, correio_data):
     return render(request, "FreteApp/cotacoes.html")
 
 
+@login_required
 def listar_entregas(request):
     todas_entregas = Entrega.objects.all()
     t_entregas = {
@@ -150,13 +158,20 @@ def listar_entregas(request):
     if request.method == "POST":
         try:
             create_endereco(request)
+            messages.success(request, "Endereço criado com sucesso!")
+            return redirect(
+                "FreteApp:entregas"
+            )  # Redirecionar para a página de listagem
         except ValidationError as e:
             messages.error(request, f"Atenção: o CEP {e} é inválido.")
-            return HttpResponseServerError(f"Erro ao criar endereço: {e}")
+            return redirect(
+                "FreteApp:entregas"
+            )  # Redirecionar para a página de listagem com mensagem de erro
 
     return render(request, "FreteApp/list_entregas.html", context=t_entregas)
 
 
+@login_required
 def create_endereco(request):
     endereco_data = {
         "logradouro": request.POST.get("logradouro"),
@@ -171,6 +186,7 @@ def create_endereco(request):
     create_cliente(request, endereco_data)
 
 
+@login_required
 def create_cliente(request, endereco_data):
     cliente_data = {
         "endereco": Endereco.objects.create(**endereco_data),
@@ -181,6 +197,7 @@ def create_cliente(request, endereco_data):
     create_entrega(request, cliente_data)
 
 
+@login_required
 def create_entrega(request, cliente_data):
     entrega_data = {
         "cliente": Cliente.objects.create(**cliente_data),
@@ -192,3 +209,81 @@ def create_entrega(request, cliente_data):
     }
 
     Entrega.objects.create(**entrega_data)
+
+
+@login_required
+def detalhes(request, identificador):
+    entrega = get_object_or_404(Entrega, identificador=identificador)
+
+    entrega = {"entrega": entrega}
+    return render(request, "FreteApp/ordem_servico.html", entrega)
+
+
+@login_required
+def gerar_pdf(request, identificador):
+    # Crie um objeto HttpResponse com o tipo de conteúdo PDF
+    response = HttpResponse(content_type="application/pdf")
+    entrega = get_object_or_404(Entrega, identificador=identificador)
+
+    # Defina o cabeçalho do PDF para download
+    response[
+        "Content-Disposition"
+    ] = f'attachment; filename="{entrega.identificador}.pdf"'
+    pdf = canvas.Canvas(response, pagesize=A4)
+    pdf.drawString(mm_p(100), mm_p(280), "Loja Bibelô")
+
+    pdf.drawString(mm_p(10), mm_p(270), "Nº Pedido.")
+    pdf.drawString(mm_p(36), mm_p(270), f"{entrega.pedido_numero}")
+
+    pdf.drawString(mm_p(10), mm_p(264), "Cliente.")
+    pdf.drawString(mm_p(36), mm_p(264), f"{entrega.cliente}")
+
+    pdf.drawString(mm_p(10), mm_p(258), "Telefone.")
+    pdf.drawString(mm_p(36), mm_p(258), f"{entrega.cliente.telefone}")
+
+    text_mult = f"{entrega.cliente.endereco.logradouro}, N°. {entrega.cliente.endereco.numero} - {entrega.cliente.endereco.complemento}"
+    pdf.drawString(mm_p(10), mm_p(252), "Endereco.")
+    pdf.drawString(mm_p(36), mm_p(252), text_mult)
+
+    pdf.drawString(mm_p(10), mm_p(246), "Bairro.")
+    pdf.drawString(
+        mm_p(36),
+        mm_p(246),
+        f"{entrega.cliente.endereco.bairro} - {entrega.cliente.endereco.cep}",
+    )
+
+    pdf.drawString(mm_p(10), mm_p(240), "Produto.")
+    pdf.drawString(mm_p(36), mm_p(240), f"{entrega.get_payment_pedido_display()}")
+
+    pdf.drawString(mm_p(10), mm_p(234), "Valor Boy.")
+    pdf.drawString(
+        mm_p(36),
+        mm_p(234),
+        f"R$ {entrega.valor_entrega} - {entrega.get_payment_motoboy_display()}",
+    )
+
+    pdf.drawString(mm_p(10), mm_p(228), "Informações.")
+    pdf.drawString(mm_p(36), mm_p(228), f"{entrega.informacoes}")
+
+    pdf.showPage()
+    pdf.save()
+
+    return response
+
+
+@login_required
+def deletar_entrega(request, identificador):
+    entrega = get_object_or_404(Entrega, identificador=identificador)
+
+    # Certifique-se de que seu modelo de Entrega tem um relacionamento com Cliente e Endereco.
+    # Se o relacionamento for chamado "cliente" e "endereco", o código ficaria assim:
+    cliente = entrega.cliente
+    endereco = cliente.endereco
+
+    # Exclua o endereço associado ao cliente
+    endereco.delete()
+
+    # Em seguida, você pode excluir a entrega
+    entrega.delete()
+
+    return redirect("FreteApp:entregas")

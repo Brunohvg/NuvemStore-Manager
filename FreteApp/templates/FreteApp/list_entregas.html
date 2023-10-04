@@ -84,7 +84,8 @@
                   <td class="cell"><span class="note">{{entrega.data_hora}}</span></td>
                   <td class="cell"><span class="badge bg-success">{{ entrega.get_payment_motoboy_display }}</span></td>
                   <td class="cell">{{entrega.valor_entrega}}</td>
-                  <td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
+                  {# enviar os dados na url usando o paht #}
+                  <td class="cell"><a class="btn-sm app-btn-secondary" href="{% url 'FreteApp:detalhes' entrega.identificador %}">Print</a></td>
                 </tr>
                 {% endfor %}
 
@@ -135,7 +136,8 @@
                   <td class="cell"><span>17 Oct</span><span class="note">2:16 PM</span></td>
                   <td class="cell"><span class="badge bg-success">Paid</span></td>
                   <td class="cell">$259.35</td>
-                  <td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
+                  <td class="cell"><a class="btn-sm app-btn-secondary" href="#">Ver</a></td>
+                  
                 </tr>
               </tbody>
             </table>
@@ -168,7 +170,7 @@
                   <td class="cell"><span class="cell-data">16 Oct</span><span class="note">03:16 AM</span></td>
                   <td class="cell"><span class="badge bg-warning">Pending</span></td>
                   <td class="cell">$96.20</td>
-                  <td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
+                  <td class="cell"><a class="btn-sm app-btn-secondary" href="#">Ver</a></td>
                 </tr>
               </tbody>
             </table>
@@ -201,7 +203,7 @@
                   <td class="cell"><span class="cell-data">12 Oct</span><span class="note">04:23 PM</span></td>
                   <td class="cell"><span class="badge bg-danger">Cancelled</span></td>
                   <td class="cell">$59.00</td>
-                  <td class="cell"><a class="btn-sm app-btn-secondary" href="#">View</a></td>
+                  <td class="cell"><a class="btn-sm app-btn-secondary" href="#">Ver</a></td>
                 </tr>
                 
               </tbody>
