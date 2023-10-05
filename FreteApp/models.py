@@ -35,7 +35,7 @@ class Cliente(models.Model):
 class Entrega(models.Model):
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     pedido_numero = models.CharField(max_length=10, verbose_name="Pedido nº")
-    informacoes = models.TextField(max_length=300)
+    informacoes = models.TextField(max_length=300, blank=True, null=True)
     data_hora = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0, verbose_name="Status")
     payment_pedido = models.IntegerField(
