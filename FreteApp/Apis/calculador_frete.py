@@ -106,19 +106,38 @@ class CalculadoraFrete:
             response.raise_for_status()  # Lidar com erros HTTP
             response = response.json()
 
-            valor_boy = int(float(response["order"]["payment_amount"]))
-
-            if valor_boy <= 18:
-                valor = "18,00"
-                return valor
-            else:
-                return response["order"]["payment_amount"]
+            return response["order"]["payment_amount"]
 
         except requests.exceptions.RequestException as e:
             # Lidar com erros de requisição, como timeouts, conexão falha, etc.
             # Pode retornar uma mensagem de erro, logar o erro, etc.
             print("Erro na requisição:", e)
             return {"erro": "Ocorreu um erro na consulta à API externa."}
+
+    def consultar_motoboy_google(self, cep_destino):
+        cep_destino_valido = self.validar_cep(cep_destino)
+        if not cep_destino_valido:
+            return {"erro": "CEP de destino inválido."}
+        CHAVE = config("TOKEN_GOOGLE")
+        CEP_ORIGEM = "30170-130"
+        URL_GOOGLE = f"https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins={CEP_ORIGEM}&destinations={cep_destino_valido}&key={CHAVE}"
+
+        try:
+            response = requests.get(URL_GOOGLE)
+            response.raise_for_status()
+            response_dict = response.json()
+            distancia_status = response_dict["rows"][0]["elements"][0]["status"]
+            if distancia_status == "OK":
+                distancia = response_dict["rows"][0]["elements"][0]["distance"]["value"]
+                valor_motoboy = distancia * 0.002
+
+                return f" R$ {valor_motoboy:.2f}"
+            else:
+                return "Descupe, não localizamos o seu cep"
+
+        except requests.exceptions.RequestException as e:
+            print(e)
+            return e
 
 
 """# Exemplo de uso
