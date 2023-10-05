@@ -5,20 +5,12 @@
 {% endblock %}
 
 {% block titulo %}
-<div class="row justify-content-between">
-  <div class="col-auto">
-    <p>Calculadora</p>
-  </div>
-  <div class="col-auto">
-    <a {% if not valor_motoboy %}class="btn app-btn-orange disabled" {% else %}class="btn app-btn-orange"{% endif %} class="btn app-btn-orange disabled"  data-bs-toggle="modal" href="#exampleModalToggle" role="button">Criar entrega motoboy</a>
-  </div>
-</div>
-
+{% include "FreteApp/includes/botoes_header.html" %}
 {% endblock titulo %}
 
 
 {% block content %}
-
+  {% include 'FreteApp/includes/pop-up-enderco.html' %} 
   {% include 'FreteApp/includes/pop-up.html' %}
 
 

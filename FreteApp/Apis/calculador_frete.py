@@ -45,6 +45,21 @@ class CalculadoraFrete:
         except Exception as e:
             return None
 
+    def buscar_endereco_googole(self, dados_destino):
+        if dados_destino:
+            CHAVE = config("TOKEN_GOOGLE")
+            CEP_ORIGEM = "30170-130"
+            URL_GOOGLE = f"https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins={CEP_ORIGEM}&destinations={dados_destino}&key={CHAVE}"
+
+        try:
+            response = requests.get(URL_GOOGLE)
+            response.raise_for_status()
+            return response.json()
+            
+
+        except requests.exceptions.RequestException as e:
+            return e
+
     def consultar_valor_correio(self, cep_destino, peso, comprimento, largura, altura):
         # Valida o CEP de destino antes de prosseguir
         cep_destino_valido = self.validar_cep(cep_destino)
@@ -131,7 +146,7 @@ class CalculadoraFrete:
                 distancia = response_dict["rows"][0]["elements"][0]["distance"]["value"]
                 valor_motoboy = distancia * 0.002
 
-                return f" R$ {valor_motoboy:.2f}"
+                return f"{valor_motoboy:.2f}"
             else:
                 return "Descupe, não localizamos o seu cep"
 

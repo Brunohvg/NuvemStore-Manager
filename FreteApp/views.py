@@ -130,10 +130,10 @@ def handle_valor_motoboy(request, data, end_data, correio_data):
             "cidade": end_data["cidade"],
         }
         valor_motoboy = calculador.consultar_motoboy_google(cep)
-
+        # valor = converter_valor(valor_motoboy)
         motoboy_data = {"valor_motoboy": valor_motoboy}
         print(motoboy_data)
-        preco_inicial = {"valor_entrega": valor_motoboy}
+        preco_inicial = {"valor_entrega": motoboy_data["valor_motoboy"]}
         form_endereco = FormEndereco(initial=conteudo_inicial)
         form_cliente = FormCliente()
         form_entrega = FormEntrega(initial=preco_inicial)
