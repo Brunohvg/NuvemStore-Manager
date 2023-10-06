@@ -7,4 +7,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("dashboard/", include("FreteApp.urls")),
     path("link/", include("LinkApp.urls")),
+    path("webhook/", include("WebhookApp.urls")),
 ]

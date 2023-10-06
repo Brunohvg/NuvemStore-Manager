@@ -1,19 +1,20 @@
 {% extends 'base.html' %}
 
 {% block cardalert %}
-  {% include 'FreteApp/includes/card-alert.html' %}
+  {% include 'FreteApp/includes/cards/card-alert.html' %}
 {% endblock %}
 
 {% block titulo %}
-{% include "FreteApp/includes/botoes_header.html" %}
+{% include "FreteApp/includes/botoes/botoes_header.html" %}
 {% endblock titulo %}
 
 
+
 {% block content %}
-  {% include 'FreteApp/includes/pop-up-enderco.html' %} 
-  {% include 'FreteApp/includes/pop-up.html' %}
+  {% include 'FreteApp/includes/pop-up/pop-up-enderco.html' %} 
+  {% include 'FreteApp/includes/pop-up/pop-up.html' %}
 
 
-  {% include 'FreteApp/includes/form-consultar-preco.html' %}
-  {% include 'FreteApp/includes/resultado-cotacao.html' %}
+  {% include 'FreteApp/includes/formularios/form-consultar-preco.html' %}
+  {% include 'FreteApp/includes/cards/card-resultado-cotacoes.html' %}
 {% endblock %}

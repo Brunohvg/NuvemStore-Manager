@@ -1,31 +1,39 @@
-from calculador_frete import CalculadoraFrete
+import requests
 
-cal = CalculadoraFrete("34600190")
+url = "https://api.pagar.me/1/payment_links"
 
-valor = cal.buscar_endereco_googole("35384000")
+payload = {
+    "api_key": "ak_test_FD0mK5HaoZCtxQrMtbmJl9NTwtwYEU",
+    "amount": 20000,
+    "name": "Brsuno",
+    "items": [
+        {
+            "id": "1",
+            "title": "Brsuno",
+            "unit_price": 20000,
+            "quantity": 1,
+            "tangible": True,
+        }
+    ],
+    "postback_config": {
+        "orders": "https://a316-2804-1b3-61c0-fc1a-1944-ad9c-c548-f323.ngrok-free.app/webhook/",
+        "transactions": "https://a316-2804-1b3-61c0-fc1a-1944-ad9c-c548-f323.ngrok-free.app/webhook/",
+    },
+    "payment_config": {
+        "boleto": {"enabled": False, "expires_in": 20},
+        "credit_card": {
+            "enabled": True,
+            "free_installments": 1,
+            "interest_rate": 25,
+            "max_installments": 3,
+        },
+        "default_payment_method": "boleto",
+    },
+    "max_orders": 3,
+    "expires_in": 300,
+}
+headers = {"accept": "application/json", "content-type": "application/json"}
 
+response = requests.post(url, json=payload, headers=headers)
 
-import re
-
-lista = valor["destination_addresses"]
-
-# Use uma expressão regular para encontrar o padrão do CEP (5 dígitos, hífen e mais 3 dígitos)
-padrao_cep = r"\b\d{5}-\d{3}\b"
-
-# Inicialize uma lista para armazenar os CEPs encontrados
-ceps_encontrados = []
-
-# Itere pelos elementos da lista
-for texto in lista:
-    resultado = re.search(padrao_cep, texto)
-    if resultado:
-        cep_encontrado = resultado.group()
-        ceps_encontrados.append(cep_encontrado)
-
-# Imprima os CEPs encontrados
-if ceps_encontrados:
-    print("CEPs encontrados na lista:")
-    for cep in ceps_encontrados:
-        print(cep)
-else:
-    print("Nenhum CEP encontrado na lista.")
+print(response.text)
