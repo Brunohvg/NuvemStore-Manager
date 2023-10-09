@@ -1,34 +1,24 @@
-import json
+from .func.postback_decod import decodificar_dados_postback
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
-import urllib.parse
 
 # Create your views here.
 
 
-import json
-from django.http import HttpResponse
-from django.views.decorators.csrf import csrf_exempt
-
-
 @csrf_exempt
+@require_POST
 def webhook_endpoint(request):
-    if request.method == "POST":
-        # Você pode acessar os parâmetros da query string assim:
-        data = request.body
+    # Obtém os dados do postback da query string
+    data = request.body
 
-        print(data)
+    # Decodifica os dados do postback
 
-        # Faça o que for necessário com os parâmetros da query string
-        # ...
+    data_json = decodificar_dados_postback(data)
 
-        # Para processar o corpo do POST (se houver):
-
-        # Faça o que for necessário com os dados JSON
-        # ...
-
-        return HttpResponse(status=200)
-
-    return HttpResponse(status=405)  # Responde apenas a solicitações POST
+    # Processa os dados do postback
+    print(data_json.get("old_status"))
+    print(data_json.get("desired_status"))
+    # Retorne uma resposta
+    return HttpResponse(status=200)
