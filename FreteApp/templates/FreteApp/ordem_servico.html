@@ -13,7 +13,7 @@
                     </div>
                     <ul class="list-unstyled list-unstyled-border list-unstyled-noborder mb-0">
                         <li class="pb-1 mb-1"><strong class="mr-1">Nº Pedido:</strong> {{entrega.pedido_numero}}</li>
-                        <li class="pb-1 mb-1"><strong class="mr-1">ID:</strong> {{entrega.identificador}}</li>
+                        <li class="pb-1 mb-1"><strong class="mr-1">Cliente:</strong> {{entrega.cliente.nome}}</li>
                         <li class="pb-1 mb-1"><strong class="mr-1">Data de criação:</strong> {{entrega.data_hora}}</li>
                         <li class="pb-1 mb-1"><strong class="mr-1">Endereço:</strong> {{entrega.cliente.endereco.logradouro}},
                             {{entrega.cliente.endereco.numero}} - {{entrega.cliente.endereco.bairro}}
@@ -31,7 +31,7 @@
                             href="">Deletar</a>
                             <a class="btn app-btn-primary m-1"
                                 href="{% url 'FreteApp:gerar_pdf' entrega.identificador %}">Imprimir</a>
-                            
+                                #TODO GERAR LINK ACOMPANHAR STATUS DO PEDIDO CLIENTE
                             <br>
                             <br>
                         </div>
