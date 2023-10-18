@@ -152,9 +152,7 @@ def handle_valor_motoboy(request, data, end_data, correio_data):
 @login_required
 def listar_entregas(request):
     todas_entregas = Entrega.objects.all()
-    t_entregas = {
-        "todas_entregas": todas_entregas,
-    }
+    t_entregas = {"todas_entregas": todas_entregas}
 
     if request.method == "POST":
         try:

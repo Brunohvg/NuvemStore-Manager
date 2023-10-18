@@ -3,9 +3,9 @@ from django.contrib.auth.models import User
 from secrets import token_urlsafe
 
 # Create your models here.
-STATUS = ((0, "Pendente"), (1, "Saiu para entrega"), (2, "Entregue"))
+STATUS = ((0, "Pendente"), (1, "Saiu para entrega"), (2, "Entregue"), (3, "Cancelada"))
 
-STATUS_PAYMENT = ((0, "Pedente"), (1, "Pago"))
+STATUS_PAYMENT = ((0, "Pedente"), (1, "Pago"), (2, "Estorno"))
 
 
 class Endereco(models.Model):
