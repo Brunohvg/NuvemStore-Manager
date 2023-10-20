@@ -27,12 +27,12 @@ class CalculadoraFrete:
             return {"erro": "CEP de destino inválido."}
 
         try:
-            url = f"https://brasilaberto.com/api/v1/zipcode/{cep_destino_valido}"
+            url = f"https://viacep.com.br/ws/{cep_destino_valido}/json/"
             response = requests.get(url=url)
 
             if response.status_code == 200:
                 data = response.json()
-                return data["result"]
+                return data
 
             if response.status_code == 404:
                 raise Exception({"Erro": 400})
@@ -43,7 +43,7 @@ class CalculadoraFrete:
                 )
 
         except Exception as e:
-            return None
+            return e
 
     def buscar_endereco_googole(self, dados_destino):
         if dados_destino:
@@ -55,7 +55,6 @@ class CalculadoraFrete:
             response = requests.get(URL_GOOGLE)
             response.raise_for_status()
             return response.json()
-            
 
         except requests.exceptions.RequestException as e:
             return e

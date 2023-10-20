@@ -58,16 +58,16 @@ def handle_end(request, data):
     cep = data["cep"]
     if cep:
         endereco = calculadora.consultar_endereco(cep)
-        if not endereco:
+        if endereco.get("erro"):
             messages.error(request, f"Atenção: o CEP {cep} é inválido.")
         else:
             end_data = {
-                "rua": endereco["street"],
-                "bairro": endereco["district"],
-                "cidade": endereco["city"],
-                "uf": endereco["stateShortname"],
-                "cep": endereco["zipcode"],
-                "complemento": endereco["complement"],
+                "rua": endereco["logradouro"],
+                "bairro": endereco["bairro"],
+                "cidade": endereco["localidade"],
+                "uf": endereco["uf"],
+                "cep": endereco["cep"],
+                "complemento": endereco["complemento"],
             }
             return handle_valor_correio(request, data, end_data)
     return render(request, "FreteApp/cotacoes.html")
