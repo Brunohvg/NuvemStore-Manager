@@ -1,5 +1,6 @@
-
-  <!-- Modal -->
+<!-- Modal -->
+<form class="row g-3" action="{% url "FreteApp:end_google" %}" method="post">
+  {% csrf_token %}
   <div class="modal fade" id="pop-up-endereco" tabindex="-1" aria-labelledby="pop-up-endereco" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -8,17 +9,20 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+
           <div class="mb-3">
             <label for="" class="form-label">Digite seu endereço</label>
-            <input type="text"
-              class="form-control" name="" id="" aria-describedby="helpId" placeholder="">
-            <small id="helpId" class="form-text text-muted">Ex: Rua aimores 309 nossa senhora de fatima</small>
+            <input type="text" class="form-control" name="end_google" id="" aria-describedby="helpId" placeholder=""
+              required>
+            <small id="helpId" class="form-text text-muted">Ex: Rua aimores 309 nossa senhora de fatima sabara</small>
           </div>
+         
         </div>
         <div class="modal-footer">
           <button type="button" class="btn app-btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn app-btn-orange">Buscar</button>
+          <button type="submit" class="btn app-btn-orange">Buscar</button>
         </div>
       </div>
     </div>
   </div>
+</form>

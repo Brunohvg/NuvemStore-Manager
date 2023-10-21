@@ -10,6 +10,7 @@ urlpatterns = [
     path("entregas/", views.listar_entregas, name="entregas"),
     path("detalhes/<str:identificador>", views.detalhes, name="detalhes"),
     path("imprimir/<str:identificador>", views.gerar_pdf, name="gerar_pdf"),
-    path("exluir/<str:identificador>", views.deletar_entrega, name="deletar_entrega")
+    path("exluir/<str:identificador>", views.deletar_entrega, name="deletar_entrega"),
+    path("consultar_end/", views.consultar_end_google, name="end_google")
     # Exemplo de URLs no aplicativo FreteApp
 ]

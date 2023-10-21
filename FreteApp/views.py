@@ -286,3 +286,21 @@ def deletar_entrega(request, identificador):
     entrega.delete()
 
     return redirect("FreteApp:entregas")
+
+
+@login_required
+def consultar_end_google(request):
+    calculadora = CalculadoraFrete(CEP_PADRAO)
+    if request.method == "POST":
+        end_google = request.POST.get("end_google")
+        response_end = calculadora.buscar_endereco_googole(end_google)
+
+        if not response_end:
+            messages.error(
+                request, "O endereço digita não consta em nossa base de dados"
+            )
+
+        messages.success(request, response_end)
+        return redirect("FreteApp:calculadora")
+
+    return redirect("FreteApp:calculadora")  # Redirecionar para a página de listagem

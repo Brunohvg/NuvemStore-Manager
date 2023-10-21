@@ -3,12 +3,7 @@ from decouple import config  # Certifique-se de que você importou a biblioteca 
 
 
 def consultar_endereco_google(end):
-    endereco = end
-    if not endereco:
-        return {"erro": "CEP de destino inválido."}
     CHAVE = config("TOKEN_GOOGLE")
-    CEP_ORIGEM = "30170-130"
-    URL_GOOGLE = f"https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins={CEP_ORIGEM}&destinations={end}&key={CHAVE}"
     base_url = (
         f"https://maps.googleapis.com/maps/api/geocode/json?address={end}&key={CHAVE}"
     )
@@ -16,7 +11,23 @@ def consultar_endereco_google(end):
 
     if response.status_code == 200:
         response_dic = response.json()
-        return response_dic["results"][0]["address_components"][0]["long_name"]
+        if not response_dic.get("status") == "ZERO_RESULTS":
+            dados = response_dic["results"][0]["formatted_address"]
+        return dados
 
+    def buscar_endereco_googole(self, dados_destino):
+        if dados_destino:
+            CHAVE = config("TOKEN_GOOGLE")
+            URL_GOOGLE = f"https://maps.googleapis.com/maps/api/geocode/json?address={dados_destino}&key={CHAVE}"
 
-print(consultar_endereco_google("rua aimores nossa senhora de fatima sabara"))
+        try:
+            response = requests.get(URL_GOOGLE)
+            response.raise_for_status()
+
+            if not response.get("status") != "ZERO_RESULTS":
+                return "Erro na api"
+            dados = response["results"][0]["formatted_address"]
+            return dados
+
+        except requests.exceptions.RequestException as e:
+            return e

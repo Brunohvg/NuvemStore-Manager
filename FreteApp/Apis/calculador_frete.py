@@ -48,13 +48,17 @@ class CalculadoraFrete:
     def buscar_endereco_googole(self, dados_destino):
         if dados_destino:
             CHAVE = config("TOKEN_GOOGLE")
-            CEP_ORIGEM = "30170-130"
-            URL_GOOGLE = f"https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins={CEP_ORIGEM}&destinations={dados_destino}&key={CHAVE}"
+            URL_GOOGLE = f"https://maps.googleapis.com/maps/api/geocode/json?address={dados_destino}&key={CHAVE}"
 
         try:
             response = requests.get(URL_GOOGLE)
+            response_dic = response.json()
             response.raise_for_status()
-            return response.json()
+
+            if response_dic.get("status") == "ZERO_RESULTS":
+                return None
+            dados = response_dic["results"][0]["formatted_address"]
+            return dados
 
         except requests.exceptions.RequestException as e:
             return e
@@ -174,4 +178,25 @@ if cep_destino_valido:
     print("Resultado do Motoboy:", resultado_motoboy)
 else:
     print("CEP de destino inválido.")
+
+    def extract_cep(address):
+    Extrai o CEP do endereço.
+
+    Args:
+        address: O endereço a partir do qual o CEP será extraído.
+
+    Returns:
+        O CEP do endereço.
+
+
+    # O CEP é o primeiro conjunto de números de 8 dígitos no endereço.
+
+    cep = address.split("-")[0]
+    cep = cep.replace(".", "")
+    cep = cep.replace(",", "")
+
+    return cep
+
+
+print(extract_cep("R. São Paulo, 638 - Centro, Belo Horizonte - MG, 30170-131, Brazil"))
 """
