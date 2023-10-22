@@ -1,20 +1,8 @@
 {% if form_entrega %}
-{% load crispy_forms_tags %}
-    <div class="col-md-3">
-        {{ form_entrega.pedido_numero|as_crispy_field }}
-    </div>
-    <div class="col-md-3">
-        {{ form_entrega.payment_pedido|as_crispy_field }}
-    </div>
-    <div class="col-md-3">
-        {{ form_entrega.payment_motoboy|as_crispy_field }}
-    </div>
-    <div class="col-md-3">
-        {{ form_entrega.valor_entrega|as_crispy_field }}
-    </div>
-    <div class="col-md-12">
-        {{ form_entrega.informacoes|as_crispy_field }}
-    </div>
-
-
+  {% load crispy_forms_tags %}
+  <div class="col-md-3">{{ form_entrega.pedido_numero|as_crispy_field }}</div>
+  <div class="col-md-3">{{ form_entrega.payment_pedido|as_crispy_field }}</div>
+  <div class="col-md-3">{{ form_entrega.payment_motoboy|as_crispy_field }}</div>
+  <div class="col-md-3">{{ form_entrega.valor_entrega|as_crispy_field }}</div>
+  <div class="col-md-12">{{ form_entrega.informacoes|as_crispy_field }}</div>
 {% endif %}

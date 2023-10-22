@@ -1,10 +1,5 @@
 {% if form_cliente %}
-{% load crispy_forms_tags %}
-    <div class="col-md-8">
-        {{ form_cliente.nome|as_crispy_field }}
-    </div>
-    <div class="col-md-4">
-        {{ form_cliente.telefone|as_crispy_field }}
-    </div>
-
+  {% load crispy_forms_tags %}
+  <div class="col-md-8">{{ form_cliente.nome|as_crispy_field }}</div>
+  <div class="col-md-4">{{ form_cliente.telefone|as_crispy_field }}</div>
 {% endif %}

@@ -48,8 +48,8 @@
               </div>
               <!-- //col -->
               {% block pesquisa_end %}
-              {{user.email}}
-              {% endblock pesquisa_end %}
+                {{ user.email }}
+              {% endblock %}
 
               <!-- //app-search-box -->
 
@@ -206,7 +206,7 @@
         <div class="sidepanel-inner d-flex flex-column">
           <a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
           <div class="app-branding">
-            <a class="app-logo" ><img class="logo-icon me-2" src="{% static 'assets/images/app-logo2.svg' %}" alt="logo" /><span class="logo-text">Cloud Store</span></a>
+            <a class="app-logo"><img class="logo-icon me-2" src="{% static 'assets/images/app-logo2.svg' %}" alt="logo" /><span class="logo-text">Cloud Store</span></a>
           </div>
           <!-- //app-branding -->
           <!-- MENU A ESQUERDA -->
@@ -227,8 +227,7 @@
               <!-- //nav-item -->
               <li class="nav-item">
                 <!-- //Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                <a class="nav-link"  href="{% url 'FreteApp:calculadora' %}">
-
+                <a class="nav-link" href="{% url 'FreteApp:calculadora' %}">
                   <span class="nav-icon">
                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-folder" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                       <path d="M9.828 4a3 3 0 0 1-2.12-.879l-.83-.828A1 1 0 0 0 6.173 2H2.5a1 1 0 0 0-1 .981L1.546 4h-1L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3v1z" />
@@ -241,8 +240,7 @@
               <!-- //nav-item -->
               <li class="nav-item">
                 <!-- //Bootstrap Icons: https://icons.getbootstrap.com/ -->
-                <a class="nav-link" href="{% url "FreteApp:entregas" %}">
-
+                <a class="nav-link" href="{% url 'FreteApp:entregas' %}">
                   <span class="nav-icon">
                     <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-card-list" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                       <path fill-rule="evenodd" d="M14.5 3h-13a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
@@ -279,7 +277,7 @@
                       <a class="submenu-link" href="{% url 'LinkApp:gerar_link' %}">Link</a>
                     </li>
                     <li class="submenu-item">
-                      <a class="submenu-link" href="{% url "FreteApp:entregas" %}">Account</a>
+                      <a class="submenu-link" href="{% url 'FreteApp:entregas' %}">Account</a>
                     </li>
                     <li class="submenu-item">
                       <a class="submenu-link" href="settings.html">Settings</a>
@@ -413,7 +411,7 @@
         <div class="container-xl">
           <h1 class="app-page-title">
             {% block titulo %}
-              
+
             {% endblock %}
           </h1>
 
@@ -437,6 +435,9 @@
             <!-- //app-card -->
           </div>
           <!-- //col -->
+          {% block conteudo2 %}
+
+          {% endblock %}
 
           <!-- //col -->
         </div>
@@ -445,21 +446,21 @@
     </div>
     <!-- //app-content -->
 
-    <!--           <footer class="app-footer" style="position: fixed; left: 0; bottom: 0; width: 100%;">
+    <!--                        <footer class="app-footer" style="position: fixed; left: 0; bottom: 0; width: 100%;">
     <div class="container>
-     /* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */            -->
-    <!--            <small class=" copyright">Designed with <span class="sr-only">love</span><i class="fas fa-heart"
+     /* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */                         -->
+    <!--                         <small class=" copyright">Designed with <span class="sr-only">love</span><i class="fas fa-heart"
         style="color: #fb866a;"></i> by <a class="app-link" href="http://themes.3rdwavemedia.com"
         target="_blank">Xiaoying Riley</a> for developers</small>
     </div>
-  </footer>           -->
+  </footer>                        -->
 
     <!-- //app-footer -->
 
     <!-- //app-wrapper -->
 
     <!-- Javascript -->
-    
+
     <script src="{% static 'assets/plugins/popper.min.js' %}"></script>
     <script src="{% static 'assets/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
 
@@ -473,7 +474,5 @@
     <!-- Meus Js -->
     <script src="{% static 'assets\js\formatador_inputs.js' %}"></script>
     <script src="{% static 'assets/js/teste.js' %}"></script>
-    
-    
   </body>
 </html>

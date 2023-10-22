@@ -20,6 +20,3 @@ def gerar_pdf(request, identificador):
     ] = f'attachment; filename="{entrega.identificador}.pdf"'
     pdf = canvas.Canvas(response, pagesize=A5)
     pdf.drawString(mm_p(20), mm_p(100), "testes")
-
-
-
